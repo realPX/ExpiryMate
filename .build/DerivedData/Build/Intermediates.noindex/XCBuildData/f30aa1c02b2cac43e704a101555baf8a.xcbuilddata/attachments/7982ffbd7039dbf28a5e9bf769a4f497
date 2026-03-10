@@ -1,0 +1,49 @@
+{
+  "" : {
+    "diagnostics" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget-primary.dia",
+    "emit-module-dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget-primary-emit-module.dia",
+    "pch" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget-primary.swiftdeps"
+  },
+  "/Users/ios/Desktop/Test/ExpiryMateWidget/ExpiryMateWidget/ExpiryMateWidget.swift" : {
+    "const-values" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget.swiftconstvalues",
+    "dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget.d",
+    "diagnostics" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget.dia",
+    "index-unit-output-path" : "/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget.o",
+    "llvm-bc" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget.bc",
+    "object" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget.o",
+    "swift-dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget.swiftdeps",
+    "swiftmodule" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidget~partial.swiftmodule"
+  },
+  "/Users/ios/Desktop/Test/ExpiryMateWidget/ExpiryMateWidget/ExpiryMateWidgetBundle.swift" : {
+    "const-values" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidgetBundle.swiftconstvalues",
+    "dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidgetBundle.d",
+    "diagnostics" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidgetBundle.dia",
+    "index-unit-output-path" : "/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidgetBundle.o",
+    "llvm-bc" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidgetBundle.bc",
+    "object" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidgetBundle.o",
+    "swift-dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidgetBundle.swiftdeps",
+    "swiftmodule" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/ExpiryMateWidgetBundle~partial.swiftmodule"
+  },
+  "/Users/ios/Desktop/Test/Shared/Shared/AppConstants.swift" : {
+    "const-values" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/AppConstants.swiftconstvalues",
+    "dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/AppConstants.d",
+    "diagnostics" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/AppConstants.dia",
+    "index-unit-output-path" : "/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/AppConstants.o",
+    "llvm-bc" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/AppConstants.bc",
+    "object" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/AppConstants.o",
+    "swift-dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/AppConstants.swiftdeps",
+    "swiftmodule" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/AppConstants~partial.swiftmodule"
+  },
+  "/Users/ios/Desktop/Test/Shared/Shared/WidgetSnapshot.swift" : {
+    "const-values" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/WidgetSnapshot.swiftconstvalues",
+    "dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/WidgetSnapshot.d",
+    "diagnostics" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/WidgetSnapshot.dia",
+    "index-unit-output-path" : "/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/WidgetSnapshot.o",
+    "llvm-bc" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/WidgetSnapshot.bc",
+    "object" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/WidgetSnapshot.o",
+    "swift-dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/WidgetSnapshot.swiftdeps",
+    "swiftmodule" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMateWidget.build/Objects-normal/x86_64/WidgetSnapshot~partial.swiftmodule"
+  }
+}

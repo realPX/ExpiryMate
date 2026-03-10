@@ -1,0 +1,40 @@
+{
+  "source": "/Users/ios/Desktop/Test/ExpiryMate/Features/Items/CustomSortSheet.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "自定义排序",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "按住右侧拖拽手柄即可调整顺序，保存后会作为自定义排序结果。",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 46
+        }
+      },
+      {
+        "comment": "",
+        "key": "取消",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 54
+        }
+      },
+      {
+        "comment": "",
+        "key": "保存",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 59
+        }
+      }
+    ]
+  },
+  "version": 1
+}

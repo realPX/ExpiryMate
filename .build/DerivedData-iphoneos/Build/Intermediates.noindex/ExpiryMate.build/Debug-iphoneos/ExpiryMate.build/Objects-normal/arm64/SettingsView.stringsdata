@@ -1,0 +1,48 @@
+{
+  "source": "/Users/ios/Desktop/Test/ExpiryMate/Features/Settings/SettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "设置",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "应用偏好",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 42
+        }
+      },
+      {
+        "comment": "",
+        "key": "这里集中放通知、显示和数据相关设置。",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 45
+        }
+      },
+      {
+        "comment": "",
+        "key": "当前已经包含首页、列表、详情、编辑、通知和 Widget 基础结构，后续可以继续补图片附件、归档、同步和上架物料。",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 216
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 373
+        }
+      }
+    ]
+  },
+  "version": 1
+}

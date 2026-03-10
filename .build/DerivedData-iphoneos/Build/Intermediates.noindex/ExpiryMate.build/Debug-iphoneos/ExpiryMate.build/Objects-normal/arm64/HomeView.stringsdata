@@ -1,0 +1,48 @@
+{
+  "source": "/Users/ios/Desktop/Test/ExpiryMate/Features/Home/HomeView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "到期提醒",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 58
+        }
+      },
+      {
+        "comment": "",
+        "key": "今天到期",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 77
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld 项",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 141
+        }
+      },
+      {
+        "comment": "",
+        "key": "查看全部",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 181
+        }
+      },
+      {
+        "comment": "",
+        "key": "新增到期事项",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 215
+        }
+      }
+    ]
+  },
+  "version": 1
+}

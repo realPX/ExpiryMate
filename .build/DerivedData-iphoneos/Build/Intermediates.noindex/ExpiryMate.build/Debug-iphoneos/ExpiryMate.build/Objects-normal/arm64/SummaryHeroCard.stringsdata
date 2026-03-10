@@ -1,0 +1,16 @@
+{
+  "source": "/Users/ios/Desktop/Test/ExpiryMate/Components/SummaryHeroCard.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "到期事项概览",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 20
+        }
+      }
+    ]
+  },
+  "version": 1
+}

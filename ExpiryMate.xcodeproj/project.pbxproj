@@ -1,0 +1,615 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0B181C93C2DBAA48566654ED /* ExpiryMateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9794E9C12C6578E5FA386672 /* ExpiryMateWidget.swift */; };
+		19118772FFB4FDF552D8ED53 /* ItemContextPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D02F6894ACCE031188DCEE /* ItemContextPreview.swift */; };
+		24F9E478931E3AFB6A3A4125 /* AppFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A25479FBFF025D727D4397E /* AppFormatters.swift */; };
+		2EAFC7A9663857894A45D1CA /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633DB05B18F32C4C46D1C233 /* AppConstants.swift */; };
+		3D8F144CD7215F421D7ED070 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C42AADBA59E150140F79B49 /* Foundation.framework */; };
+		4D391D53AB38A0189E704D9A /* ItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330976FCD7CD957F1834B6A5 /* ItemCardView.swift */; };
+		4E5431B64FA1D05AD4845173 /* SummaryHeroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBB959F2E5354EE334BC72A /* SummaryHeroCard.swift */; };
+		57005BB6598D2F522F25D837 /* ExpiryMateWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F4A528887A0E0498A5F4C /* ExpiryMateWidgetBundle.swift */; };
+		5CBECECECC4A00777278EB8F /* ExpiryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3663E2BBE4B266D344D54 /* ExpiryItem.swift */; };
+		5E2DF2B9013F8694356E0D5B /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B260AE0B99F96C21BF534BDD /* EmptyStateView.swift */; };
+		615C722D5490665DE861170C /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9640CCC858B44215281EFE4 /* ItemDetailView.swift */; };
+		6CF61E1202F22335C425C3DF /* ItemSortMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D12D50AD80FE2D0C75ACFD /* ItemSortMode.swift */; };
+		7EEA3BE43B3637018DF30C68 /* CustomSortSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7ECA77B66A2BC0CEEF3E79 /* CustomSortSheet.swift */; };
+		80965F11C311566960D866BA /* CategoryBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319ECB6122F8D52A243F5C2C /* CategoryBadge.swift */; };
+		88B7568DEE84EB97341558D4 /* ExpiryMateWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1E90378E8D77986DF8FCECE9 /* ExpiryMateWidget.appex */; };
+		8ACF82FBFFEFEAB146D35457 /* DemoSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411A2BAF912D6C293147F4E /* DemoSeeder.swift */; };
+		90A649467B4835A0CC21FC58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C42AADBA59E150140F79B49 /* Foundation.framework */; };
+		97124533C96916E97A4B0F46 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08ED55B8CBEF326BCFBC580 /* HomeView.swift */; };
+		A2408F822D3075DD18207BA4 /* ItemMaintenanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301A29A8462EE9DA149E92AE /* ItemMaintenanceService.swift */; };
+		AE81CA4A7AA359B620835DAE /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633DB05B18F32C4C46D1C233 /* AppConstants.swift */; };
+		AF072A8FDC3FA052C698D77D /* AppTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0E88226AFB8AC74B01AE7 /* AppTab.swift */; };
+		B580D14DEBAF868FA5654EC1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9966EC1A7F8BCB75F30F9A2 /* SettingsView.swift */; };
+		B910F0F08BE9AB9CEF3B4725 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D2950F52DC68F932611AB6 /* AppTheme.swift */; };
+		B9571050F074036CA420788B /* ItemEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302189229118E9D8FC845AC3 /* ItemEditorView.swift */; };
+		BEF6B5C7A885DF2708C1A456 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AF5D60C2B3C6E45E4786B0 /* WidgetSnapshot.swift */; };
+		C760536F40D43916F6B4B224 /* ExpiryMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009284264D84551982BB3DAC /* ExpiryMateApp.swift */; };
+		CFAB7A9BE607E5F7CACD626A /* ItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65289F09CCF11A645B647FB /* ItemsView.swift */; };
+		D95516E1097074E9ABD13BA2 /* WidgetSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D53A1564D0E791C2E23035A /* WidgetSyncService.swift */; };
+		D9F8B85C7A0035F65899F8CA /* ItemFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B487B2693E13FBABDBFD37E /* ItemFilter.swift */; };
+		E664693C31FC808EA3A2F283 /* ExpiryCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D018222C0195687DBE3FF /* ExpiryCategory.swift */; };
+		E8DFED66DF19383785D8760C /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1A52E7DD6BEC45F3D6C361 /* AppView.swift */; };
+		E93B16D52F4D9E93203A65F2 /* ReminderPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325A23F27DEACC6209373F7 /* ReminderPreset.swift */; };
+		F70C0BDACF853B5D5D0BE17E /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB91B9FE39FFBC678BE8C0 /* NotificationScheduler.swift */; };
+		F721D11F2CA0C97FB203A930 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AF5D60C2B3C6E45E4786B0 /* WidgetSnapshot.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FF0640C7F03E03153AF762A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 053B01C933F0B12F780ED62B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E3DE56468DD12A6AB0F2E403;
+			remoteInfo = ExpiryMateWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B2C9346D6B6FC40AB99EBAB8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				88B7568DEE84EB97341558D4 /* ExpiryMateWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		009284264D84551982BB3DAC /* ExpiryMateApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpiryMateApp.swift; path = ExpiryMate/App/ExpiryMateApp.swift; sourceTree = "<group>"; };
+		07F3663E2BBE4B266D344D54 /* ExpiryItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpiryItem.swift; path = ExpiryMate/Models/ExpiryItem.swift; sourceTree = "<group>"; };
+		0D53A1564D0E791C2E23035A /* WidgetSyncService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetSyncService.swift; path = ExpiryMate/Services/WidgetSyncService.swift; sourceTree = "<group>"; };
+		13AF5D60C2B3C6E45E4786B0 /* WidgetSnapshot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetSnapshot.swift; path = Shared/WidgetSnapshot.swift; sourceTree = "<group>"; };
+		1C1A52E7DD6BEC45F3D6C361 /* AppView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppView.swift; path = ExpiryMate/App/AppView.swift; sourceTree = "<group>"; };
+		1E90378E8D77986DF8FCECE9 /* ExpiryMateWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ExpiryMateWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		301A29A8462EE9DA149E92AE /* ItemMaintenanceService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemMaintenanceService.swift; path = ExpiryMate/Services/ItemMaintenanceService.swift; sourceTree = "<group>"; };
+		302189229118E9D8FC845AC3 /* ItemEditorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemEditorView.swift; path = ExpiryMate/Features/Editor/ItemEditorView.swift; sourceTree = "<group>"; };
+		30D2950F52DC68F932611AB6 /* AppTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppTheme.swift; path = ExpiryMate/Shared/AppTheme.swift; sourceTree = "<group>"; };
+		319ECB6122F8D52A243F5C2C /* CategoryBadge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CategoryBadge.swift; path = ExpiryMate/Components/CategoryBadge.swift; sourceTree = "<group>"; };
+		330976FCD7CD957F1834B6A5 /* ItemCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemCardView.swift; path = ExpiryMate/Components/ItemCardView.swift; sourceTree = "<group>"; };
+		434F4A528887A0E0498A5F4C /* ExpiryMateWidgetBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpiryMateWidgetBundle.swift; path = ExpiryMateWidget/ExpiryMateWidgetBundle.swift; sourceTree = "<group>"; };
+		4411A2BAF912D6C293147F4E /* DemoSeeder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DemoSeeder.swift; path = ExpiryMate/Services/DemoSeeder.swift; sourceTree = "<group>"; };
+		633DB05B18F32C4C46D1C233 /* AppConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppConstants.swift; path = Shared/AppConstants.swift; sourceTree = "<group>"; };
+		64D02F6894ACCE031188DCEE /* ItemContextPreview.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemContextPreview.swift; path = ExpiryMate/Features/Items/ItemContextPreview.swift; sourceTree = "<group>"; };
+		6A25479FBFF025D727D4397E /* AppFormatters.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppFormatters.swift; path = ExpiryMate/Services/AppFormatters.swift; sourceTree = "<group>"; };
+		6B487B2693E13FBABDBFD37E /* ItemFilter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemFilter.swift; path = ExpiryMate/Models/ItemFilter.swift; sourceTree = "<group>"; };
+		6F7ECA77B66A2BC0CEEF3E79 /* CustomSortSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomSortSheet.swift; path = ExpiryMate/Features/Items/CustomSortSheet.swift; sourceTree = "<group>"; };
+		78D12D50AD80FE2D0C75ACFD /* ItemSortMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemSortMode.swift; path = ExpiryMate/Models/ItemSortMode.swift; sourceTree = "<group>"; };
+		7C42AADBA59E150140F79B49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		9794E9C12C6578E5FA386672 /* ExpiryMateWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpiryMateWidget.swift; path = ExpiryMateWidget/ExpiryMateWidget.swift; sourceTree = "<group>"; };
+		991D018222C0195687DBE3FF /* ExpiryCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpiryCategory.swift; path = ExpiryMate/Models/ExpiryCategory.swift; sourceTree = "<group>"; };
+		A9966EC1A7F8BCB75F30F9A2 /* SettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = ExpiryMate/Features/Settings/SettingsView.swift; sourceTree = "<group>"; };
+		B08ED55B8CBEF326BCFBC580 /* HomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = ExpiryMate/Features/Home/HomeView.swift; sourceTree = "<group>"; };
+		B260AE0B99F96C21BF534BDD /* EmptyStateView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmptyStateView.swift; path = ExpiryMate/Components/EmptyStateView.swift; sourceTree = "<group>"; };
+		C325A23F27DEACC6209373F7 /* ReminderPreset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReminderPreset.swift; path = ExpiryMate/Models/ReminderPreset.swift; sourceTree = "<group>"; };
+		C65289F09CCF11A645B647FB /* ItemsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemsView.swift; path = ExpiryMate/Features/Items/ItemsView.swift; sourceTree = "<group>"; };
+		DBBB959F2E5354EE334BC72A /* SummaryHeroCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SummaryHeroCard.swift; path = ExpiryMate/Components/SummaryHeroCard.swift; sourceTree = "<group>"; };
+		DEFB91B9FE39FFBC678BE8C0 /* NotificationScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationScheduler.swift; path = ExpiryMate/Services/NotificationScheduler.swift; sourceTree = "<group>"; };
+		E9640CCC858B44215281EFE4 /* ItemDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemDetailView.swift; path = ExpiryMate/Features/Detail/ItemDetailView.swift; sourceTree = "<group>"; };
+		EBB479490D5633B1CF20D312 /* ExpiryMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpiryMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDF0E88226AFB8AC74B01AE7 /* AppTab.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppTab.swift; path = ExpiryMate/App/AppTab.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		13970608F6C543428094C3DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D8F144CD7215F421D7ED070 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5CED357F41DFA652AD8DBE4C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90A649467B4835A0CC21FC58 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3AA08F22F5FCA077590FB242 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6C869FB54E2309A0052CF00 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6985325970FFE518E254BE69 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				633DB05B18F32C4C46D1C233 /* AppConstants.swift */,
+				13AF5D60C2B3C6E45E4786B0 /* WidgetSnapshot.swift */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		6A27064FBABFF1D9699F9E99 /* ExpiryMate */ = {
+			isa = PBXGroup;
+			children = (
+				EDF0E88226AFB8AC74B01AE7 /* AppTab.swift */,
+				1C1A52E7DD6BEC45F3D6C361 /* AppView.swift */,
+				009284264D84551982BB3DAC /* ExpiryMateApp.swift */,
+				319ECB6122F8D52A243F5C2C /* CategoryBadge.swift */,
+				B260AE0B99F96C21BF534BDD /* EmptyStateView.swift */,
+				330976FCD7CD957F1834B6A5 /* ItemCardView.swift */,
+				DBBB959F2E5354EE334BC72A /* SummaryHeroCard.swift */,
+				E9640CCC858B44215281EFE4 /* ItemDetailView.swift */,
+				302189229118E9D8FC845AC3 /* ItemEditorView.swift */,
+				B08ED55B8CBEF326BCFBC580 /* HomeView.swift */,
+				6F7ECA77B66A2BC0CEEF3E79 /* CustomSortSheet.swift */,
+				64D02F6894ACCE031188DCEE /* ItemContextPreview.swift */,
+				C65289F09CCF11A645B647FB /* ItemsView.swift */,
+				A9966EC1A7F8BCB75F30F9A2 /* SettingsView.swift */,
+				991D018222C0195687DBE3FF /* ExpiryCategory.swift */,
+				07F3663E2BBE4B266D344D54 /* ExpiryItem.swift */,
+				6B487B2693E13FBABDBFD37E /* ItemFilter.swift */,
+				78D12D50AD80FE2D0C75ACFD /* ItemSortMode.swift */,
+				C325A23F27DEACC6209373F7 /* ReminderPreset.swift */,
+				6A25479FBFF025D727D4397E /* AppFormatters.swift */,
+				4411A2BAF912D6C293147F4E /* DemoSeeder.swift */,
+				301A29A8462EE9DA149E92AE /* ItemMaintenanceService.swift */,
+				DEFB91B9FE39FFBC678BE8C0 /* NotificationScheduler.swift */,
+				0D53A1564D0E791C2E23035A /* WidgetSyncService.swift */,
+				30D2950F52DC68F932611AB6 /* AppTheme.swift */,
+			);
+			name = ExpiryMate;
+			sourceTree = "<group>";
+		};
+		B6C869FB54E2309A0052CF00 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7C42AADBA59E150140F79B49 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		C581E9A63800AFEECE7D2FF7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EBB479490D5633B1CF20D312 /* ExpiryMate.app */,
+				1E90378E8D77986DF8FCECE9 /* ExpiryMateWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F97AC1D9D46F75311E7E2EEC /* ExpiryMateWidget */ = {
+			isa = PBXGroup;
+			children = (
+				9794E9C12C6578E5FA386672 /* ExpiryMateWidget.swift */,
+				434F4A528887A0E0498A5F4C /* ExpiryMateWidgetBundle.swift */,
+			);
+			name = ExpiryMateWidget;
+			sourceTree = "<group>";
+		};
+		FC65C4A85ED05BD367ECE610 = {
+			isa = PBXGroup;
+			children = (
+				C581E9A63800AFEECE7D2FF7 /* Products */,
+				3AA08F22F5FCA077590FB242 /* Frameworks */,
+				6A27064FBABFF1D9699F9E99 /* ExpiryMate */,
+				F97AC1D9D46F75311E7E2EEC /* ExpiryMateWidget */,
+				6985325970FFE518E254BE69 /* Shared */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8ABD661FF03A00D0BE6C0CC3 /* ExpiryMate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11F86DB365E31F752205A27F /* Build configuration list for PBXNativeTarget "ExpiryMate" */;
+			buildPhases = (
+				3F418BE914B5F8FE297163F8 /* Sources */,
+				13970608F6C543428094C3DA /* Frameworks */,
+				68B5A9729E425F8B9282F89C /* Resources */,
+				B2C9346D6B6FC40AB99EBAB8 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4430FF59915FCFF101D60FE9 /* PBXTargetDependency */,
+			);
+			name = ExpiryMate;
+			productName = ExpiryMate;
+			productReference = EBB479490D5633B1CF20D312 /* ExpiryMate.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E3DE56468DD12A6AB0F2E403 /* ExpiryMateWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 670F7DDF8CEA259B4E9F540D /* Build configuration list for PBXNativeTarget "ExpiryMateWidget" */;
+			buildPhases = (
+				BA343F3BBEA89335EA240AED /* Sources */,
+				5CED357F41DFA652AD8DBE4C /* Frameworks */,
+				410595DBE9AD33982D6A73A9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ExpiryMateWidget;
+			productName = ExpiryMateWidget;
+			productReference = 1E90378E8D77986DF8FCECE9 /* ExpiryMateWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		053B01C933F0B12F780ED62B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+			};
+			buildConfigurationList = 18FD84FDF9C2A13DB02AE300 /* Build configuration list for PBXProject "ExpiryMate" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FC65C4A85ED05BD367ECE610;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C581E9A63800AFEECE7D2FF7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8ABD661FF03A00D0BE6C0CC3 /* ExpiryMate */,
+				E3DE56468DD12A6AB0F2E403 /* ExpiryMateWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		410595DBE9AD33982D6A73A9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68B5A9729E425F8B9282F89C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F418BE914B5F8FE297163F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF072A8FDC3FA052C698D77D /* AppTab.swift in Sources */,
+				E8DFED66DF19383785D8760C /* AppView.swift in Sources */,
+				C760536F40D43916F6B4B224 /* ExpiryMateApp.swift in Sources */,
+				80965F11C311566960D866BA /* CategoryBadge.swift in Sources */,
+				5E2DF2B9013F8694356E0D5B /* EmptyStateView.swift in Sources */,
+				4D391D53AB38A0189E704D9A /* ItemCardView.swift in Sources */,
+				4E5431B64FA1D05AD4845173 /* SummaryHeroCard.swift in Sources */,
+				615C722D5490665DE861170C /* ItemDetailView.swift in Sources */,
+				B9571050F074036CA420788B /* ItemEditorView.swift in Sources */,
+				97124533C96916E97A4B0F46 /* HomeView.swift in Sources */,
+				7EEA3BE43B3637018DF30C68 /* CustomSortSheet.swift in Sources */,
+				19118772FFB4FDF552D8ED53 /* ItemContextPreview.swift in Sources */,
+				CFAB7A9BE607E5F7CACD626A /* ItemsView.swift in Sources */,
+				B580D14DEBAF868FA5654EC1 /* SettingsView.swift in Sources */,
+				E664693C31FC808EA3A2F283 /* ExpiryCategory.swift in Sources */,
+				5CBECECECC4A00777278EB8F /* ExpiryItem.swift in Sources */,
+				D9F8B85C7A0035F65899F8CA /* ItemFilter.swift in Sources */,
+				6CF61E1202F22335C425C3DF /* ItemSortMode.swift in Sources */,
+				E93B16D52F4D9E93203A65F2 /* ReminderPreset.swift in Sources */,
+				24F9E478931E3AFB6A3A4125 /* AppFormatters.swift in Sources */,
+				8ACF82FBFFEFEAB146D35457 /* DemoSeeder.swift in Sources */,
+				A2408F822D3075DD18207BA4 /* ItemMaintenanceService.swift in Sources */,
+				F70C0BDACF853B5D5D0BE17E /* NotificationScheduler.swift in Sources */,
+				D95516E1097074E9ABD13BA2 /* WidgetSyncService.swift in Sources */,
+				B910F0F08BE9AB9CEF3B4725 /* AppTheme.swift in Sources */,
+				AE81CA4A7AA359B620835DAE /* AppConstants.swift in Sources */,
+				BEF6B5C7A885DF2708C1A456 /* WidgetSnapshot.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA343F3BBEA89335EA240AED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B181C93C2DBAA48566654ED /* ExpiryMateWidget.swift in Sources */,
+				57005BB6598D2F522F25D837 /* ExpiryMateWidgetBundle.swift in Sources */,
+				2EAFC7A9663857894A45D1CA /* AppConstants.swift in Sources */,
+				F721D11F2CA0C97FB203A930 /* WidgetSnapshot.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4430FF59915FCFF101D60FE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ExpiryMateWidget;
+			target = E3DE56468DD12A6AB0F2E403 /* ExpiryMateWidget */;
+			targetProxy = FF0640C7F03E03153AF762A6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		063E642DEB2565DA2673BF64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		6D9E18BA274E23CD7DB30F6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ExpiryMateWidget/ExpiryMateWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ExpiryMateWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.expirymate.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		928519B38FADFB0ECA64D440 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ExpiryMate/ExpiryMate.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ExpiryMate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.expirymate;
+				PRODUCT_NAME = ExpiryMate;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A9EEEE2A10C28C418CDE13D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ExpiryMate/ExpiryMate.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ExpiryMate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.expirymate;
+				PRODUCT_NAME = ExpiryMate;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BD9AF904A822F945568A5BAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		EC946C716E1F5E587898C05F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ExpiryMateWidget/ExpiryMateWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ExpiryMateWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.expirymate.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		11F86DB365E31F752205A27F /* Build configuration list for PBXNativeTarget "ExpiryMate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				928519B38FADFB0ECA64D440 /* Release */,
+				A9EEEE2A10C28C418CDE13D9 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18FD84FDF9C2A13DB02AE300 /* Build configuration list for PBXProject "ExpiryMate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				063E642DEB2565DA2673BF64 /* Debug */,
+				BD9AF904A822F945568A5BAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		670F7DDF8CEA259B4E9F540D /* Build configuration list for PBXNativeTarget "ExpiryMateWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC946C716E1F5E587898C05F /* Release */,
+				6D9E18BA274E23CD7DB30F6F /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 053B01C933F0B12F780ED62B /* Project object */;
+}

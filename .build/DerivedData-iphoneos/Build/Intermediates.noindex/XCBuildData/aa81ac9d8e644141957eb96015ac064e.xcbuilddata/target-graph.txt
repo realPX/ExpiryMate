@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'ExpiryMate' in project 'ExpiryMate'
+➜ Explicit dependency on target 'ExpiryMateWidget' in project 'ExpiryMate'
+Target 'ExpiryMateWidget' in project 'ExpiryMate' (no dependencies)

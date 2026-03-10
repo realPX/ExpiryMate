@@ -1,0 +1,64 @@
+{
+  "source": "/Users/ios/Desktop/Test/ExpiryMateWidget/ExpiryMateWidget.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "到期提醒",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "快速查看最近需要处理的到期事项。",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 42
+        }
+      },
+      {
+        "comment": "",
+        "key": "最近到期",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 54
+        }
+      },
+      {
+        "comment": "",
+        "key": "还没有事项",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "打开 App 添加订阅、证件或保修提醒。",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 66
+        }
+      },
+      {
+        "comment": "",
+        "key": "剩余 %lld 天",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 76
+        }
+      },
+      {
+        "comment": "",
+        "key": "已过期 %lld 天",
+        "location": {
+          "startingColumn": 93,
+          "startingLine": 76
+        }
+      }
+    ]
+  },
+  "version": 1
+}

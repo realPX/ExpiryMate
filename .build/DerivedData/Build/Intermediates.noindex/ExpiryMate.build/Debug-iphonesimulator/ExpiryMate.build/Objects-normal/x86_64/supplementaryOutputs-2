@@ -1,0 +1,23 @@
+{
+  "/Users/ios/Desktop/Test/ExpiryMate/Components/CategoryBadge.swift" : {
+    "const-values" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/CategoryBadge.swiftconstvalues",
+    "dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/CategoryBadge.d",
+    "diagnostics" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/CategoryBadge.dia",
+    "object" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/CategoryBadge.o",
+    "swift-dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/CategoryBadge.swiftdeps"
+  },
+  "/Users/ios/Desktop/Test/ExpiryMate/Components/EmptyStateView.swift" : {
+    "const-values" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/EmptyStateView.swiftconstvalues",
+    "dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/EmptyStateView.d",
+    "diagnostics" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/EmptyStateView.dia",
+    "object" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/EmptyStateView.o",
+    "swift-dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/EmptyStateView.swiftdeps"
+  },
+  "/Users/ios/Desktop/Test/ExpiryMate/Components/ItemCardView.swift" : {
+    "const-values" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/ItemCardView.swiftconstvalues",
+    "dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/ItemCardView.d",
+    "diagnostics" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/ItemCardView.dia",
+    "object" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/ItemCardView.o",
+    "swift-dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/x86_64/ItemCardView.swiftdeps"
+  }
+}

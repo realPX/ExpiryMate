@@ -1,0 +1,32 @@
+{
+  "source": "/Users/ios/Desktop/Test/ExpiryMate/App/AppTab.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "首页",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "全部",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 16
+        }
+      },
+      {
+        "comment": "",
+        "key": "设置",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 18
+        }
+      }
+    ]
+  },
+  "version": 1
+}

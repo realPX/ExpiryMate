@@ -1,0 +1,23 @@
+{
+  "/Users/ios/Desktop/Test/ExpiryMate/App/AppTab.swift" : {
+    "const-values" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/AppTab.swiftconstvalues",
+    "dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/AppTab.d",
+    "diagnostics" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/AppTab.dia",
+    "object" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/AppTab.o",
+    "swift-dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/AppTab.swiftdeps"
+  },
+  "/Users/ios/Desktop/Test/ExpiryMate/App/AppView.swift" : {
+    "const-values" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/AppView.swiftconstvalues",
+    "dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/AppView.d",
+    "diagnostics" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/AppView.dia",
+    "object" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/AppView.o",
+    "swift-dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/AppView.swiftdeps"
+  },
+  "/Users/ios/Desktop/Test/ExpiryMate/App/ExpiryMateApp.swift" : {
+    "const-values" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/ExpiryMateApp.swiftconstvalues",
+    "dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/ExpiryMateApp.d",
+    "diagnostics" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/ExpiryMateApp.dia",
+    "object" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/ExpiryMateApp.o",
+    "swift-dependencies" : "/Users/ios/Desktop/Test/.build/DerivedData/Build/Intermediates.noindex/ExpiryMate.build/Debug-iphonesimulator/ExpiryMate.build/Objects-normal/arm64/ExpiryMateApp.swiftdeps"
+  }
+}

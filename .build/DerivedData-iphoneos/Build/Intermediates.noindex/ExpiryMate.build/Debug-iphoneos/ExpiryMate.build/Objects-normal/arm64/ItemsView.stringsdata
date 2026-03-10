@@ -1,0 +1,320 @@
+{
+  "source": "/Users/ios/Desktop/Test/ExpiryMate/Features/Items/ItemsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "搜索标题或备注",
+        "location": {
+          "startingColumn": 108,
+          "startingLine": 217
+        }
+      },
+      {
+        "comment": "",
+        "key": "全部事项",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 218
+        }
+      },
+      {
+        "comment": "",
+        "key": "清空所有已归档事项？",
+        "location": {
+          "startingColumn": 13,
+          "startingLine": 242
+        }
+      },
+      {
+        "comment": "",
+        "key": "删除这个事项？",
+        "location": {
+          "startingColumn": 13,
+          "startingLine": 259
+        }
+      },
+      {
+        "comment": "",
+        "key": "删除全部归档事项",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 249
+        }
+      },
+      {
+        "comment": "",
+        "key": "取消",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 252
+        }
+      },
+      {
+        "comment": "",
+        "key": "这会删除当前所有已归档事项，且无法恢复。",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 256
+        }
+      },
+      {
+        "comment": "",
+        "key": "删除",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 266
+        }
+      },
+      {
+        "comment": "",
+        "key": "取消",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 269
+        }
+      },
+      {
+        "comment": "",
+        "key": "删除后，对应通知也会一并取消。",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 273
+        }
+      },
+      {
+        "comment": "",
+        "key": "筛选",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 295
+        }
+      },
+      {
+        "comment": "",
+        "key": "筛选与查找",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 288
+        }
+      },
+      {
+        "comment": "",
+        "key": "支持按状态、分类和归档视图管理你的到期事项",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 290
+        }
+      },
+      {
+        "comment": "",
+        "key": "事项列表",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 325
+        }
+      },
+      {
+        "comment": "",
+        "key": "取消全选",
+        "location": {
+          "startingColumn": 76,
+          "startingLine": 336
+        }
+      },
+      {
+        "comment": "",
+        "key": "全选",
+        "location": {
+          "startingColumn": 93,
+          "startingLine": 336
+        }
+      },
+      {
+        "comment": "",
+        "key": "完成",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 341
+        }
+      },
+      {
+        "comment": "",
+        "key": "排序",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 354
+        }
+      },
+      {
+        "comment": "",
+        "key": "选择",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 368
+        }
+      },
+      {
+        "comment": "",
+        "key": "新增",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 377
+        }
+      },
+      {
+        "comment": "",
+        "key": "归档全部已过期（%lld）",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 414
+        }
+      },
+      {
+        "comment": "",
+        "key": "恢复全部归档（%lld）",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 421
+        }
+      },
+      {
+        "comment": "",
+        "key": "清空全部归档（%lld）",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 428
+        }
+      },
+      {
+        "comment": "",
+        "key": "批量操作",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 432
+        }
+      },
+      {
+        "comment": "",
+        "key": "已选择 %lld 项",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 444
+        }
+      },
+      {
+        "comment": "",
+        "key": "清空选择",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 448
+        }
+      },
+      {
+        "comment": "",
+        "key": "取消选择",
+        "location": {
+          "startingColumn": 80,
+          "startingLine": 498
+        }
+      },
+      {
+        "comment": "",
+        "key": "选择此项",
+        "location": {
+          "startingColumn": 97,
+          "startingLine": 498
+        }
+      },
+      {
+        "comment": "",
+        "key": "恢复到列表",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 507
+        }
+      },
+      {
+        "comment": "",
+        "key": "归档过期事项",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 513
+        }
+      },
+      {
+        "comment": "",
+        "key": "归档事项",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 513
+        }
+      },
+      {
+        "comment": "",
+        "key": "编辑事项",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 521
+        }
+      },
+      {
+        "comment": "",
+        "key": "关闭提醒",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 528
+        }
+      },
+      {
+        "comment": "",
+        "key": "开启默认提醒",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 528
+        }
+      },
+      {
+        "comment": "",
+        "key": "删除事项",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 537
+        }
+      },
+      {
+        "comment": "",
+        "key": "删除",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 546
+        }
+      },
+      {
+        "comment": "",
+        "key": "恢复",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 553
+        }
+      },
+      {
+        "comment": "",
+        "key": "归档",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 560
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld 项",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 676
+        }
+      }
+    ]
+  },
+  "version": 1
+}

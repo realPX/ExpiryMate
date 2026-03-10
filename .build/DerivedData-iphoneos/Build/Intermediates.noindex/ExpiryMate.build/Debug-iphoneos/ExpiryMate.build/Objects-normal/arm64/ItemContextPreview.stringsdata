@@ -1,0 +1,16 @@
+{
+  "source": "/Users/ios/Desktop/Test/ExpiryMate/Features/Items/ItemContextPreview.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "备注摘要",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 98
+        }
+      }
+    ]
+  },
+  "version": 1
+}
