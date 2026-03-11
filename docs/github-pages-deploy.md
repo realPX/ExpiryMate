@@ -47,12 +47,17 @@ git push -u origin main
 https://<你的 GitHub 用户名>.github.io/<仓库名>/
 ```
 
-## 第四步：替换正式链接
+## 第四步：绑定正式域名
 
 部署完成后，确认下面两项链接可正常访问：
 
-- `https://realPX.github.io/ExpiryMate/privacy-policy.html`
-- `https://realPX.github.io/ExpiryMate/technical-support.html`
+- `https://pxllhub.com/privacy-policy.html`
+- `https://pxllhub.com/technical-support.html`
+
+当前项目已经补充了：
+
+- 自定义域名文件：`docs/site/CNAME`
+- 域名内容：`pxllhub.com`
 
 建议全局替换以下文件中的链接：
 
@@ -63,16 +68,17 @@ https://<你的 GitHub 用户名>.github.io/<仓库名>/
 - `docs/site/privacy-policy.html`
 - `docs/site/technical-support.html`
 
-## 你的最终链接通常会是
+## 你的最终链接
 
-如果仓库名假设为 `ExpiryMate`，那么可能是：
+当前正式链接应为：
 
 ```text
-隐私政策：https://<用户名>.github.io/ExpiryMate/privacy-policy.html
-技术支持：https://<用户名>.github.io/ExpiryMate/technical-support.html
+隐私政策：https://pxllhub.com/privacy-policy.html
+技术支持：https://pxllhub.com/technical-support.html
 ```
 
-如果你后面绑定了自定义域名，再把这些链接改成你自己的域名即可。
+如果 GitHub Pages 后台还没显示自定义域名，去仓库 `Settings > Pages`
+检查是否已经识别到 `pxllhub.com`。
 
 ## 日常更新方式
 

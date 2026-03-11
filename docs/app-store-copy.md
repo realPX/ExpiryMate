@@ -69,5 +69,5 @@
 
 - 开发者名称：潘雄
 - 支持邮箱：nevernumb@126.com
-- 隐私政策链接：https://realPX.github.io/ExpiryMate/privacy-policy.html
-- 技术支持链接：https://realPX.github.io/ExpiryMate/technical-support.html
+- 隐私政策链接：https://pxllhub.com/privacy-policy.html
+- 技术支持链接：https://pxllhub.com/technical-support.html

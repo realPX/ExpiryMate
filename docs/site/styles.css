@@ -120,6 +120,40 @@ a {
   font-size: 16px;
 }
 
+.hero-home {
+  padding-bottom: 30px;
+}
+
+.hero-eyebrow {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.hero-note {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 18px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.16);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 14px;
+}
+
+.hero-note .inline-code {
+  margin-left: 8px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
 .hero-nav {
   position: relative;
   z-index: 1;
@@ -127,6 +161,60 @@ a {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 24px;
+}
+
+.hero-metrics {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.metric-card {
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(14px);
+}
+
+.metric-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.metric-card strong {
+  display: block;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.hero-tags {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.hero-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .hero-nav a,
@@ -238,6 +326,10 @@ a {
   padding-left: 20px;
 }
 
+.check-list li::marker {
+  color: var(--blue);
+}
+
 .content-card li + li {
   margin-top: 8px;
 }
@@ -247,6 +339,43 @@ a {
 .faq-list {
   display: grid;
   gap: 14px;
+}
+
+.brand-story-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-story-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -80px -100px auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(97, 217, 255, 0.2), transparent 65%);
+  pointer-events: none;
+}
+
+.story-grid,
+.brand-principles {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.story-card,
+.principle-card {
+  position: relative;
+  z-index: 1;
+}
+
+.story-kicker {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .mini-card {
@@ -320,6 +449,15 @@ a {
 
 @media (max-width: 900px) {
   .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .story-grid,
+  .brand-principles {
     grid-template-columns: 1fr;
   }
 
