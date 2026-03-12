@@ -34,7 +34,7 @@ final class NotificationScheduler {
 
             let content = UNMutableNotificationContent()
             content.title = item.title
-            content.body = "\(item.category.title)即将到期，记得处理。"
+            content.body = "\(item.displayCategoryTitle)即将到期，记得处理。"
             content.sound = .default
 
             let components = Calendar.current.dateComponents(
@@ -62,7 +62,12 @@ final class NotificationScheduler {
         let calendar = Calendar.current
         let reminderDay = calendar.date(byAdding: .day, value: -preset.daysBefore, to: item.expireDate)
         return reminderDay.flatMap {
-            calendar.date(bySettingHour: 9, minute: 0, second: 0, of: $0)
+            calendar.date(
+                bySettingHour: AppConstants.preferredReminderHour,
+                minute: AppConstants.preferredReminderMinute,
+                second: 0,
+                of: $0
+            )
         }
     }
 
