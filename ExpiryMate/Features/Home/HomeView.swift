@@ -2,6 +2,11 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
+    @AppStorage(AppConstants.defaultReminderHourKey, store: AppConstants.sharedDefaults)
+    private var defaultReminderHour = AppConstants.defaultReminderHour
+    @AppStorage(AppConstants.defaultReminderMinuteKey, store: AppConstants.sharedDefaults)
+    private var defaultReminderMinute = AppConstants.defaultReminderMinute
+
     @Binding var selectedTab: AppTab
     @Binding var selectedCategory: ExpiryCategory?
     let onAddTap: () -> Void
@@ -72,14 +77,14 @@ struct HomeView: View {
                         NavigationLink {
                             ItemDetailView(item: item)
                         } label: {
-                            VStack(alignment: .leading, spacing: 14) {
+                            VStack(alignment: .leading, spacing: 12) {
                                 HStack(alignment: .top) {
                                     Label("今天到期", systemImage: "clock.badge.exclamationmark.fill")
                                         .font(.caption.weight(.semibold))
                                         .foregroundStyle(.white)
                                         .padding(.horizontal, 10)
                                         .padding(.vertical, 7)
-                                        .background(.white.opacity(0.16), in: Capsule(style: .continuous))
+                                        .background(AppTheme.glassFill, in: Capsule(style: .continuous))
 
                                     Spacer(minLength: 10)
 
@@ -87,19 +92,30 @@ struct HomeView: View {
                                         .font(.headline.weight(.bold))
                                         .foregroundStyle(.white.opacity(0.92))
                                         .frame(width: 40, height: 40)
-                                        .background(.white.opacity(0.16), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                                        .background(AppTheme.glassFill, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
                                 }
 
                                 VStack(alignment: .leading, spacing: 8) {
-                                    CategoryBadge(category: item.category, emphasis: true)
+                                    CategoryBadge(
+                                        category: item.category,
+                                        titleOverride: item.displayCategoryTitle,
+                                        emphasis: true,
+                                        maxWidth: CategoryBadge.WidthStyle.card.value
+                                    )
                                     Text(item.title)
-                                        .font(.headline)
+                                        .font(.headline.weight(.semibold))
                                         .foregroundStyle(.white)
+                                        .lineSpacing(2)
                                         .lineLimit(2)
+                                        .minimumScaleFactor(0.94)
+                                        .fixedSize(horizontal: false, vertical: true)
                                 }
 
                                 HStack(spacing: 8) {
-                                    homePill(text: item.reminderEnabled ? "提醒已开" : "未提醒", icon: item.reminderEnabled ? "bell.badge.fill" : "bell.slash")
+                                    homePill(
+                                        text: item.reminderEnabled ? "\(observedReminderTimeText) 提醒" : "未提醒",
+                                        icon: item.reminderEnabled ? "bell.badge.fill" : "bell.slash"
+                                    )
                                     homePill(text: item.expireDate.formatted(AppFormatters.shortDate), icon: "calendar")
                                 }
                             }
@@ -108,16 +124,23 @@ struct HomeView: View {
                             .background(urgentCardGradient(for: item), in: RoundedRectangle(cornerRadius: 24, style: .continuous))
                             .overlay {
                                 RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                    .strokeBorder(.white.opacity(0.12))
+                                    .strokeBorder(AppTheme.glassStroke)
                             }
-                            .shadow(color: Color.orange.opacity(0.2), radius: 14, x: 0, y: 8)
+                            .shadow(color: AppTheme.warmTerracotta.opacity(0.18), radius: 14, x: 0, y: 8)
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(.appPressable)
                     }
                 }
                 .padding(.vertical, 4)
             }
         }
+    }
+
+    private var observedReminderTimeText: String {
+        AppFormatters.reminderTimeText(
+            hour: defaultReminderHour,
+            minute: defaultReminderMinute
+        )
     }
 
     private var categorySection: some View {
@@ -130,32 +153,39 @@ struct HomeView: View {
                         selectedCategory = category
                         selectedTab = .items
                     } label: {
-                        VStack(alignment: .leading, spacing: 18) {
+                        VStack(alignment: .leading, spacing: 16) {
                             HStack {
                                 Image(systemName: category.symbolName)
                                     .font(.headline.weight(.semibold))
                                     .foregroundStyle(.white.opacity(0.95))
-                                    .frame(width: 40, height: 40)
-                                    .background(.white.opacity(0.16), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                                    .frame(width: 42, height: 42)
+                                    .background(AppTheme.glassFill, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                            .strokeBorder(AppTheme.glassStroke)
+                                    }
                                 Spacer()
                                 Label("\(countForCategory(category)) 项", systemImage: "tray.full")
                                     .font(.caption.weight(.semibold))
                                     .foregroundStyle(.white.opacity(0.92))
                                     .padding(.horizontal, 10)
                                     .padding(.vertical, 7)
-                                    .background(.white.opacity(0.14), in: Capsule(style: .continuous))
+                                    .background(AppTheme.glassFill, in: Capsule(style: .continuous))
                             }
 
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(category.title)
-                                    .font(.headline)
+                                    .font(.headline.weight(.semibold))
                                     .foregroundStyle(.white)
                                 Text(categoryDescription(category))
                                     .font(.caption)
                                     .foregroundStyle(.white.opacity(0.82))
+                                    .lineSpacing(2)
+                                    .fixedSize(horizontal: false, vertical: true)
                                 Text(categoryRiskSummary(category))
                                     .font(.caption.weight(.semibold))
                                     .foregroundStyle(.white.opacity(0.95))
+                                    .lineSpacing(2)
                             }
                         }
                         .padding(16)
@@ -163,11 +193,11 @@ struct HomeView: View {
                         .background(categoryCardGradient(category), in: RoundedRectangle(cornerRadius: 24, style: .continuous))
                         .overlay {
                             RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                .strokeBorder(.white.opacity(0.12))
+                                .strokeBorder(AppTheme.glassStroke)
                         }
-                        .shadow(color: category.tint.opacity(0.18), radius: 14, x: 0, y: 8)
+                        .shadow(color: category.tint.opacity(0.14), radius: 14, x: 0, y: 8)
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(.appPressable)
                 }
             }
         }
@@ -178,10 +208,16 @@ struct HomeView: View {
             HStack(alignment: .firstTextBaseline) {
                 sectionHeader(title: "最近 7 天", subtitle: "从紧急到宽松排序")
                 Spacer()
-                Button("查看全部") {
+                Button {
                     selectedTab = .items
+                } label: {
+                    Label("查看全部", systemImage: "arrow.right")
+                        .font(.caption.weight(.semibold))
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 7)
+                        .background(AppTheme.surfaceMuted, in: Capsule(style: .continuous))
                 }
-                .font(.subheadline.weight(.semibold))
+                .buttonStyle(.appPressable)
             }
 
             if upcomingItems.isEmpty {
@@ -200,7 +236,7 @@ struct HomeView: View {
                         } label: {
                             ItemCardView(item: item, style: .prominent)
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(.appPressable)
                     }
                 }
             }
@@ -219,9 +255,9 @@ struct HomeView: View {
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
             .background(AppTheme.accentGradient, in: Capsule(style: .continuous))
-            .shadow(color: Color.accentColor.opacity(0.28), radius: 14, x: 0, y: 8)
+            .shadow(color: AppTheme.warmRosewood.opacity(0.16), radius: 14, x: 0, y: 8)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.appPressable)
         .padding(.horizontal, AppTheme.pagePadding)
         .padding(.top, 10)
         .padding(.bottom, 10)
@@ -229,12 +265,21 @@ struct HomeView: View {
     }
 
     private func sectionHeader(title: String, subtitle: String) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 8) {
             Text(title)
-                .font(.title3.weight(.bold))
+                .font(.headline.weight(.bold))
+                .padding(.horizontal, 10)
+                .padding(.vertical, 7)
+                .background(AppTheme.controlStrongFill, in: Capsule(style: .continuous))
+                .overlay {
+                    Capsule(style: .continuous)
+                        .strokeBorder(AppTheme.stroke)
+                }
             Text(subtitle)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
+                .lineSpacing(3)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 
@@ -248,6 +293,8 @@ struct HomeView: View {
             return "保修与售后节点"
         case .foodMedicine:
             return "保质期与药品管理"
+        case .custom:
+            return "自定义标签与场景"
         }
     }
 
@@ -279,7 +326,7 @@ struct HomeView: View {
     private func categoryCardGradient(_ category: ExpiryCategory) -> LinearGradient {
         if expiredCountForCategory(category) > 0 {
             return LinearGradient(
-                colors: [Color.red.opacity(0.92), category.tint.opacity(0.82), Color.orange.opacity(0.58)],
+                colors: [AppTheme.warmRosewood.opacity(0.94), category.tint.opacity(0.84), AppTheme.warmSand.opacity(0.66)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -287,14 +334,14 @@ struct HomeView: View {
 
         if dueTodayCountForCategory(category) > 0 {
             return LinearGradient(
-                colors: [Color.orange.opacity(0.92), category.tint.opacity(0.8), Color.yellow.opacity(0.56)],
+                colors: [AppTheme.warmTerracotta.opacity(0.94), category.tint.opacity(0.82), AppTheme.warmSand.opacity(0.68)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
         }
 
         return LinearGradient(
-            colors: [category.tint.opacity(0.94), category.tint.opacity(0.74), Color.white.opacity(0.18)],
+            colors: [category.tint.opacity(0.94), category.tint.opacity(0.78), AppTheme.warmMist.opacity(0.64)],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
@@ -302,7 +349,7 @@ struct HomeView: View {
 
     private func urgentCardGradient(for item: ExpiryItem) -> LinearGradient {
         LinearGradient(
-            colors: [Color.orange.opacity(0.96), item.category.tint.opacity(0.84), Color.yellow.opacity(0.5)],
+            colors: [AppTheme.warmTerracotta.opacity(0.96), item.category.tint.opacity(0.84), AppTheme.warmSand.opacity(0.62)],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
@@ -314,6 +361,6 @@ struct HomeView: View {
             .foregroundStyle(.white.opacity(0.94))
             .padding(.horizontal, 10)
             .padding(.vertical, 7)
-            .background(.white.opacity(0.14), in: Capsule(style: .continuous))
+            .background(AppTheme.glassFill, in: Capsule(style: .continuous))
     }
 }

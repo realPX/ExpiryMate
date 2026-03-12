@@ -15,15 +15,16 @@ struct SummaryHeroCard: View {
                         .foregroundStyle(.white)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 7)
-                        .background(.white.opacity(0.16), in: Capsule(style: .continuous))
+                        .background(AppTheme.glassFill, in: Capsule(style: .continuous))
 
                     Text("到期事项概览")
-                        .font(.subheadline.weight(.medium))
+                        .font(.footnote.weight(.semibold))
                         .foregroundStyle(.white.opacity(0.82))
 
                     Text(summaryTitle)
-                        .font(.system(size: 30, weight: .bold, design: .rounded))
+                        .font(.system(size: 29, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
+                        .lineSpacing(3)
                         .fixedSize(horizontal: false, vertical: true)
                 }
 
@@ -32,8 +33,12 @@ struct SummaryHeroCard: View {
                 Image(systemName: riskIcon)
                     .font(.title2.weight(.bold))
                     .foregroundStyle(.white.opacity(0.9))
-                    .padding(12)
-                    .background(.white.opacity(0.18), in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+                    .frame(width: 52, height: 52)
+                    .background(AppTheme.glassStrongFill, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 18, style: .continuous)
+                            .strokeBorder(AppTheme.glassStroke)
+                    }
             }
 
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
@@ -47,19 +52,19 @@ struct SummaryHeroCard: View {
                     title: "已过期",
                     value: "\(expiredCount)",
                     icon: "exclamationmark.triangle.fill",
-                    accent: .red.opacity(0.95)
+                    accent: AppTheme.warmRosewood.opacity(0.96)
                 )
                 metric(
                     title: "今天到期",
                     value: "\(dueTodayCount)",
                     icon: "clock.badge.exclamationmark.fill",
-                    accent: .orange.opacity(0.95)
+                    accent: AppTheme.warmTerracotta.opacity(0.96)
                 )
                 metric(
                     title: "7 天内",
                     value: "\(upcomingCount)",
                     icon: "calendar.badge.clock",
-                    accent: .yellow.opacity(0.95)
+                    accent: AppTheme.warmSand.opacity(0.96)
                 )
             }
         }
@@ -68,16 +73,9 @@ struct SummaryHeroCard: View {
         .background(heroGradient, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
         .overlay(alignment: .topTrailing) {
             Circle()
-                .fill(.white.opacity(0.12))
+                .fill(AppTheme.glassHighlight)
                 .frame(width: 138, height: 138)
                 .offset(x: 34, y: -42)
-        }
-        .overlay(alignment: .topLeading) {
-            RoundedRectangle(cornerRadius: 999, style: .continuous)
-                .fill(.white.opacity(0.55))
-                .frame(width: 96, height: 4)
-                .padding(.top, 12)
-                .padding(.leading, 24)
         }
         .shadow(color: heroShadowColor.opacity(0.28), radius: 22, x: 0, y: 14)
     }
@@ -124,7 +122,7 @@ struct SummaryHeroCard: View {
     private var heroGradient: LinearGradient {
         if expiredCount > 0 {
             return LinearGradient(
-                colors: [Color.red.opacity(0.95), Color.orange.opacity(0.82), Color.yellow.opacity(0.54)],
+                colors: [AppTheme.warmRosewood.opacity(0.96), AppTheme.warmTerracotta.opacity(0.88), AppTheme.warmSand.opacity(0.76)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -132,7 +130,7 @@ struct SummaryHeroCard: View {
 
         if dueTodayCount > 0 {
             return LinearGradient(
-                colors: [Color.orange.opacity(0.94), Color.yellow.opacity(0.78), Color.pink.opacity(0.52)],
+                colors: [AppTheme.warmTerracotta.opacity(0.94), AppTheme.warmSand.opacity(0.86), AppTheme.warmOlive.opacity(0.74)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -140,56 +138,49 @@ struct SummaryHeroCard: View {
 
         if upcomingCount > 0 {
             return LinearGradient(
-                colors: [Color.accentColor.opacity(0.94), Color.blue.opacity(0.82), Color.cyan.opacity(0.58)],
+                colors: [Color.accentColor.opacity(0.94), AppTheme.warmSage.opacity(0.84), AppTheme.warmOlive.opacity(0.72)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
         }
 
         return LinearGradient(
-            colors: [Color.green.opacity(0.84), Color.teal.opacity(0.76), Color.blue.opacity(0.54)],
+            colors: [AppTheme.warmSage.opacity(0.86), AppTheme.warmOlive.opacity(0.80), AppTheme.warmSand.opacity(0.66)],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
     }
 
     private var heroShadowColor: Color {
-        if expiredCount > 0 { return .red }
-        if dueTodayCount > 0 { return .orange }
-        if upcomingCount > 0 { return .accentColor }
-        return .green
+        if expiredCount > 0 { return AppTheme.warmRosewood }
+        if dueTodayCount > 0 { return AppTheme.warmTerracotta }
+        if upcomingCount > 0 { return AppTheme.warmSage }
+        return AppTheme.warmOlive
     }
 
     private func metric(title: String, value: String, icon: String, accent: Color) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(value)
-                        .font(.title3.weight(.bold))
-                        .foregroundStyle(.white)
-                    Text(title)
-                        .font(.caption)
-                        .foregroundStyle(.white.opacity(0.8))
-                }
+                Label(title, systemImage: icon)
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(accent)
 
                 Spacer(minLength: 8)
-
-                Image(systemName: icon)
-                    .font(.caption.weight(.bold))
-                    .foregroundStyle(.white.opacity(0.92))
-                    .padding(8)
-                    .background(accent.opacity(0.26), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
             }
+
+            Text(value)
+                .font(.system(size: 25, weight: .bold, design: .rounded))
+                .foregroundStyle(.white)
+                .minimumScaleFactor(0.9)
+
+            Text(title)
+                .font(.caption2.weight(.medium))
+                .foregroundStyle(.white.opacity(0.8))
+                .lineSpacing(2)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(14)
-        .background(.white.opacity(0.14), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
-        .overlay(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 999, style: .continuous)
-                .fill(accent)
-                .frame(width: 4)
-                .padding(.vertical, 12)
-                .padding(.leading, 8)
-        }
+        .background(AppTheme.glassFill, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .appAccentGlow(accent, width: 68, height: 68, opacity: 0.12, x: 10, y: -14, blur: 18)
     }
 }

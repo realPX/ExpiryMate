@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct ItemContextPreview: View {
+    @Environment(\.colorScheme) private var colorScheme
+
     let item: ExpiryItem
 
     var body: some View {
@@ -9,7 +11,12 @@ struct ItemContextPreview: View {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack(spacing: 8) {
                         statusBadge
-                        CategoryBadge(category: item.category, emphasis: true)
+                        CategoryBadge(
+                            category: item.category,
+                            titleOverride: item.displayCategoryTitle,
+                            emphasis: true,
+                            maxWidth: CategoryBadge.WidthStyle.card.value
+                        )
                     }
 
                     Text(item.title)
@@ -32,7 +39,7 @@ struct ItemContextPreview: View {
 
                     ZStack {
                         RoundedRectangle(cornerRadius: 18, style: .continuous)
-                            .fill(statusGradient.opacity(0.15))
+                            .fill(statusGradient.opacity(colorScheme == .dark ? 0.20 : 0.15))
 
                         Image(systemName: item.category.symbolName)
                             .font(.title3.weight(.bold))
@@ -41,7 +48,7 @@ struct ItemContextPreview: View {
                     .frame(width: 52, height: 52)
                     .overlay {
                         RoundedRectangle(cornerRadius: 18, style: .continuous)
-                            .strokeBorder(statusColor.opacity(0.18))
+                            .strokeBorder(statusColor.opacity(colorScheme == .dark ? 0.24 : 0.18))
                     }
                 }
             }
@@ -85,7 +92,7 @@ struct ItemContextPreview: View {
                 }
             }
             .padding(14)
-            .background(AppTheme.surfaceMuted, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+            .background(AppTheme.controlStrongFill, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
 
             HStack(spacing: 10) {
                 previewMetric(title: "到期日", value: item.expireDate.formatted(AppFormatters.shortDate), icon: "calendar.badge.clock")
@@ -106,14 +113,14 @@ struct ItemContextPreview: View {
                 }
                 .padding(14)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(AppTheme.surfaceMuted, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+                .background(AppTheme.controlStrongFill, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
             }
         }
         .padding(18)
         .frame(width: 300, alignment: .leading)
         .background(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: 26, style: .continuous)
-                .fill(statusGradient.opacity(0.16))
+                .fill(statusGradient.opacity(colorScheme == .dark ? 0.22 : 0.16))
                 .frame(height: 112)
         }
         .overlay(alignment: .top) {
@@ -128,8 +135,8 @@ struct ItemContextPreview: View {
 
     private var statusColor: Color {
         if item.isArchived { return .secondary }
-        if item.isExpired { return .red }
-        if item.isDueToday { return .orange }
+        if item.isExpired { return AppTheme.softDanger }
+        if item.isDueToday { return AppTheme.softWarning }
         if item.isUpcoming { return item.category.tint }
         return .secondary
     }
@@ -140,13 +147,13 @@ struct ItemContextPreview: View {
         if item.isArchived {
             colors = [Color.secondary.opacity(0.75), Color.secondary.opacity(0.28)]
         } else if item.isExpired {
-            colors = [Color.red.opacity(0.95), Color.orange.opacity(0.55)]
+            colors = [AppTheme.softDanger.opacity(0.94), AppTheme.warmTerracotta.opacity(0.62)]
         } else if item.isDueToday {
-            colors = [Color.orange.opacity(0.92), Color.yellow.opacity(0.5)]
+            colors = [AppTheme.softWarning.opacity(0.92), AppTheme.warmSand.opacity(0.64)]
         } else if item.isUpcoming {
-            colors = [item.category.tint.opacity(0.92), Color.accentColor.opacity(0.5)]
+            colors = [item.category.tint.opacity(0.92), AppTheme.warmOlive.opacity(0.54)]
         } else {
-            colors = [Color.accentColor.opacity(0.72), Color.blue.opacity(0.36)]
+            colors = [Color.accentColor.opacity(0.74), AppTheme.warmSage.opacity(0.44)]
         }
 
         return LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -205,19 +212,7 @@ struct ItemContextPreview: View {
     }
 
     private var timelineProgress: CGFloat {
-        let calendar = Calendar.current
-        let start = calendar.startOfDay(for: item.createdAt)
-        let end = calendar.startOfDay(for: item.expireDate)
-        let now = calendar.startOfDay(for: .now)
-
-        let total = end.timeIntervalSince(start)
-        guard total > 0 else {
-            return item.daysRemaining <= 0 ? 1 : 0.08
-        }
-
-        let elapsed = now.timeIntervalSince(start)
-        let progress = elapsed / total
-        return min(max(progress, 0.08), 1)
+        CGFloat(item.timelineProgress)
     }
 
     private var timelineFootnote: String {
@@ -229,7 +224,7 @@ struct ItemContextPreview: View {
             return "今天截止"
         }
 
-        return "\(Int(timelineProgress * 100))% 进度"
+        return item.timelineSummaryText
     }
 
     private var statusBadge: some View {
@@ -238,7 +233,11 @@ struct ItemContextPreview: View {
             .foregroundStyle(statusColor)
             .padding(.horizontal, 10)
             .padding(.vertical, 7)
-            .background(statusColor.opacity(0.12), in: Capsule(style: .continuous))
+            .background(statusColor.opacity(colorScheme == .dark ? 0.18 : 0.12), in: Capsule(style: .continuous))
+            .overlay {
+                Capsule(style: .continuous)
+                    .strokeBorder(statusColor.opacity(colorScheme == .dark ? 0.16 : 0.10))
+            }
     }
 
     private func previewPill(text: String, icon: String) -> some View {
@@ -247,7 +246,7 @@ struct ItemContextPreview: View {
             .foregroundStyle(.secondary)
             .padding(.horizontal, 10)
             .padding(.vertical, 8)
-            .background(Color.primary.opacity(0.05), in: Capsule(style: .continuous))
+            .background(AppTheme.controlFill, in: Capsule(style: .continuous))
     }
 
     private func previewMetric(title: String, value: String, icon: String) -> some View {
@@ -265,7 +264,7 @@ struct ItemContextPreview: View {
         }
         .frame(maxWidth: .infinity, minHeight: 68, alignment: .topLeading)
         .padding(12)
-        .background(AppTheme.surfaceMuted, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .background(AppTheme.controlStrongFill, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
     }
 
     private func timelineEdge(text: String, value: String, alignment: HorizontalAlignment = .leading) -> some View {

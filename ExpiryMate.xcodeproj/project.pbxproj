@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B181C93C2DBAA48566654ED /* ExpiryMateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9794E9C12C6578E5FA386672 /* ExpiryMateWidget.swift */; };
+		111AAA222BBB333CCC444DDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAA111BBB222CCC333DDD444 /* Assets.xcassets */; };
 		19118772FFB4FDF552D8ED53 /* ItemContextPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D02F6894ACCE031188DCEE /* ItemContextPreview.swift */; };
 		24F9E478931E3AFB6A3A4125 /* AppFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A25479FBFF025D727D4397E /* AppFormatters.swift */; };
 		2EAFC7A9663857894A45D1CA /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633DB05B18F32C4C46D1C233 /* AppConstants.swift */; };
@@ -90,6 +91,7 @@
 		7C42AADBA59E150140F79B49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		9794E9C12C6578E5FA386672 /* ExpiryMateWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpiryMateWidget.swift; path = ExpiryMateWidget/ExpiryMateWidget.swift; sourceTree = "<group>"; };
 		991D018222C0195687DBE3FF /* ExpiryCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpiryCategory.swift; path = ExpiryMate/Models/ExpiryCategory.swift; sourceTree = "<group>"; };
+		AAA111BBB222CCC333DDD444 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ExpiryMate/Assets.xcassets; sourceTree = "<group>"; };
 		A9966EC1A7F8BCB75F30F9A2 /* SettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = ExpiryMate/Features/Settings/SettingsView.swift; sourceTree = "<group>"; };
 		B08ED55B8CBEF326BCFBC580 /* HomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = ExpiryMate/Features/Home/HomeView.swift; sourceTree = "<group>"; };
 		B260AE0B99F96C21BF534BDD /* EmptyStateView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmptyStateView.swift; path = ExpiryMate/Components/EmptyStateView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		6A27064FBABFF1D9699F9E99 /* ExpiryMate */ = {
 			isa = PBXGroup;
 			children = (
+				AAA111BBB222CCC333DDD444 /* Assets.xcassets */,
 				EDF0E88226AFB8AC74B01AE7 /* AppTab.swift */,
 				1C1A52E7DD6BEC45F3D6C361 /* AppView.swift */,
 				009284264D84551982BB3DAC /* ExpiryMateApp.swift */,
@@ -289,6 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				111AAA222BBB333CCC444DDD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

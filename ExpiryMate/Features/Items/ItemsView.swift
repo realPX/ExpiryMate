@@ -2,6 +2,8 @@ import SwiftUI
 import SwiftData
 
 struct ItemsView: View {
+    @Environment(\.colorScheme) private var colorScheme
+
     private struct ItemSectionData: Identifiable {
         let id = UUID()
         let title: String
@@ -214,6 +216,7 @@ struct ItemsView: View {
             .padding(.bottom, isSelectionMode ? 100 : 24)
         }
         .background(AppTheme.canvasGradient.ignoresSafeArea())
+        .tint(AppTheme.warmSage)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("搜索标题或备注"))
         .navigationTitle("全部事项")
         .navigationBarTitleDisplayMode(.large)
@@ -290,15 +293,26 @@ struct ItemsView: View {
                 Text("支持按状态、分类和归档视图管理你的到期事项")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+                    .lineSpacing(3)
+                    .fixedSize(horizontal: false, vertical: true)
             }
 
+            panelGroupLabel("状态视图")
             Picker("筛选", selection: $filter) {
                 ForEach(visibleFilters) { value in
                     Text(value.title).tag(value)
                 }
             }
             .pickerStyle(.segmented)
+            .tint(AppTheme.warmSage)
+            .padding(4)
+            .background(AppTheme.controlStrongFill, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+            .overlay {
+                RoundedRectangle(cornerRadius: 18, style: .continuous)
+                    .strokeBorder(AppTheme.stroke)
+            }
 
+            panelGroupLabel("分类范围")
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     filterChip(title: "全部分类", category: nil)
@@ -309,82 +323,153 @@ struct ItemsView: View {
                 .padding(.vertical, 2)
             }
 
+            panelGroupLabel("当前概览")
             HStack(spacing: 10) {
-                quickStat(title: "已过期", value: "\(allExpiredItems.count)")
-                quickStat(title: "已归档", value: "\(allArchivedItems.count)")
-                quickStat(title: "筛选结果", value: "\(displayedCount)")
+                quickStat(title: "已过期", value: "\(allExpiredItems.count)", systemImage: "clock.badge.exclamationmark", tint: AppTheme.softDanger)
+                quickStat(title: "已归档", value: "\(allArchivedItems.count)", systemImage: "archivebox", tint: AppTheme.warmStone)
+                quickStat(title: "筛选结果", value: "\(displayedCount)", systemImage: "line.3.horizontal.decrease.circle", tint: .accentColor)
             }
         }
         .padding(18)
         .appCard()
+        .appAccentGlow(AppTheme.warmSand, width: 92, height: 92, opacity: 0.08, x: 14, y: -18, blur: 24)
     }
 
     private var headerBar: some View {
-        HStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text("事项列表")
-                    .font(.title3.weight(.bold))
-                Text(summaryText)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .top, spacing: 12) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("事项列表")
+                        .font(.title3.weight(.bold))
+
+                    if isSelectionMode {
+                        Text(selectionSummaryText)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .lineSpacing(3)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+                .layoutPriority(1)
+
+                Spacer(minLength: 0)
+
+                if isSelectionMode {
+                    HStack(spacing: 10) {
+                        Button {
+                            toggleSelectAll()
+                        }
+                        label: {
+                            Text(displayedItems.count == selectedItemIDs.count ? "取消全选" : "全选")
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(AppTheme.warmStone)
+                                .appToolbarCapsule(tint: AppTheme.warmStone)
+                        }
+
+                        Button {
+                            exitSelectionMode()
+                        }
+                        label: {
+                            Text("完成")
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(.white)
+                                .appToolbarCapsule(prominent: true, tint: AppTheme.warmSage)
+                        }
+                    }
+                } else {
+                    HStack(spacing: 8) {
+                        sortMenu
+
+                        if itemSortMode == .custom, canCustomizeSort, !displayedItems.isEmpty {
+                            Button {
+                                isShowingCustomSortSheet = true
+                            } label: {
+                                headerToolbarButtonLabel(
+                                    systemImage: "arrow.up.arrow.down",
+                                    isProminent: false
+                                )
+                            }
+                            .buttonStyle(.appPressable)
+                            .accessibilityLabel("编辑自定义排序")
+                        }
+
+                        batchMenu
+
+                        Button {
+                            enterSelectionMode()
+                        } label: {
+                            headerToolbarButtonLabel(systemImage: "checklist")
+                        }
+                        .buttonStyle(.appPressable)
+                        .accessibilityLabel("进入选择模式")
+
+                        Button(action: onAddTap) {
+                            headerToolbarButtonLabel(systemImage: "plus", isProminent: true)
+                        }
+                        .buttonStyle(.appPressable)
+                        .accessibilityLabel("新增事项")
+                    }
+                    .fixedSize(horizontal: true, vertical: false)
+                }
             }
 
-            Spacer()
-
-            if isSelectionMode {
-                HStack(spacing: 10) {
-                    Button(displayedItems.count == selectedItemIDs.count ? "取消全选" : "全选") {
-                        toggleSelectAll()
-                    }
-                    .font(.subheadline.weight(.semibold))
-
-                    Button("完成") {
-                        exitSelectionMode()
-                    }
-                    .font(.subheadline.weight(.semibold))
-                }
-            } else {
-                HStack(spacing: 10) {
-                    sortMenu
-
-                    if itemSortMode == .custom, canCustomizeSort, !displayedItems.isEmpty {
-                        Button {
-                            isShowingCustomSortSheet = true
-                        } label: {
-                            Label("排序", systemImage: "arrow.up.arrow.down")
-                                .font(.subheadline.weight(.semibold))
-                                .padding(.horizontal, 14)
-                                .padding(.vertical, 10)
-                                .background(AppTheme.surfaceMuted, in: Capsule(style: .continuous))
-                        }
-                        .buttonStyle(.plain)
+            if !isSelectionMode {
+                VStack(alignment: .leading, spacing: 8) {
+                    summaryChipRow {
+                        summaryChip(
+                            title: filter.title,
+                            systemImage: "line.3.horizontal.decrease.circle"
+                        )
+                        summaryChip(
+                            title: selectedCategory?.title ?? "全部分类",
+                            systemImage: selectedCategory?.symbolName ?? "square.grid.2x2"
+                        )
                     }
 
-                    batchMenu
-
-                    Button {
-                        enterSelectionMode()
-                    } label: {
-                        Label("选择", systemImage: "checklist")
-                            .font(.subheadline.weight(.semibold))
-                            .padding(.horizontal, 14)
-                            .padding(.vertical, 10)
-                            .background(AppTheme.surfaceMuted, in: Capsule(style: .continuous))
+                    summaryChipRow {
+                        summaryChip(
+                            title: itemSortMode.shortTitle,
+                            systemImage: itemSortMode.symbolName
+                        )
+                        summaryChip(
+                            title: "共 \(displayedCount) 项",
+                            systemImage: "number.circle"
+                        )
                     }
-                    .buttonStyle(.plain)
 
-                    Button(action: onAddTap) {
-                        Label("新增", systemImage: "plus")
-                            .font(.subheadline.weight(.semibold))
-                            .padding(.horizontal, 14)
-                            .padding(.vertical, 10)
-                            .background(AppTheme.accentGradient, in: Capsule(style: .continuous))
-                            .foregroundStyle(.white)
+                    if itemSortMode == .custom && !canCustomizeSort {
+                        Text("切回“全部 / 全部分类”后，可拖拽调整自定义排序。")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .lineSpacing(2)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
-                    .buttonStyle(.plain)
                 }
             }
         }
+    }
+
+    private func summaryChip(title: String, systemImage: String) -> some View {
+        Label(title, systemImage: systemImage)
+            .font(.caption2.weight(.semibold))
+            .foregroundStyle(.secondary)
+            .lineLimit(1)
+            .fixedSize(horizontal: true, vertical: false)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 7)
+            .background(AppTheme.controlFill, in: Capsule(style: .continuous))
+    }
+
+    private func summaryChipRow<Content: View>(
+        @ViewBuilder content: () -> Content
+    ) -> some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                content()
+            }
+            .padding(.vertical, 2)
+        }
+        .scrollClipDisabled()
     }
 
     private var sortMenu: some View {
@@ -397,13 +482,10 @@ struct ItemsView: View {
                 }
             }
         } label: {
-            Label(itemSortMode.shortTitle, systemImage: itemSortMode.symbolName)
-                .font(.subheadline.weight(.semibold))
-                .padding(.horizontal, 14)
-                .padding(.vertical, 10)
-                .background(AppTheme.surfaceMuted, in: Capsule(style: .continuous))
+            headerToolbarButtonLabel(systemImage: itemSortMode.symbolName)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.appPressable)
+        .accessibilityLabel("排序方式：\(itemSortMode.title)")
     }
 
     private var batchMenu: some View {
@@ -429,17 +511,19 @@ struct ItemsView: View {
             }
             .disabled(allArchivedItems.isEmpty || isPerformingBatchAction)
         } label: {
-            Label("批量操作", systemImage: "ellipsis.circle")
-                .font(.subheadline.weight(.semibold))
-                .padding(.horizontal, 14)
-                .padding(.vertical, 10)
-                .background(AppTheme.surfaceMuted, in: Capsule(style: .continuous))
+            headerToolbarButtonLabel(systemImage: "ellipsis")
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.appPressable)
+        .accessibilityLabel("批量操作")
     }
 
     private var selectionActionBar: some View {
         VStack(spacing: 10) {
+            Capsule(style: .continuous)
+                .fill(AppTheme.handleFill)
+                .frame(width: 38, height: 5)
+                .padding(.top, 4)
+
             HStack {
                 Text("已选择 \(selectedItemIDs.count) 项")
                     .font(.subheadline.weight(.semibold))
@@ -474,6 +558,11 @@ struct ItemsView: View {
         .padding(.top, 12)
         .padding(.bottom, 12)
         .background(.ultraThinMaterial)
+        .overlay(alignment: .top) {
+            Rectangle()
+                .fill(AppTheme.stroke)
+                .frame(height: 1)
+        }
     }
 
     @ViewBuilder
@@ -552,14 +641,14 @@ struct ItemsView: View {
                     } label: {
                         Label("恢复", systemImage: "arrow.uturn.backward")
                     }
-                    .tint(.blue)
+                    .tint(AppTheme.warmSage)
                 } else {
                     Button {
                         Task { await archive(item: item) }
                     } label: {
                         Label("归档", systemImage: "archivebox")
                     }
-                    .tint(.orange)
+                    .tint(AppTheme.warmTerracotta)
                 }
             }
 
@@ -569,14 +658,14 @@ struct ItemsView: View {
             } label: {
                 row
             }
-            .buttonStyle(.plain)
+            .buttonStyle(.appPressable)
         } else {
             NavigationLink {
                 ItemDetailView(item: item)
             } label: {
                 row
             }
-            .buttonStyle(.plain)
+            .buttonStyle(.appPressable)
         }
     }
 
@@ -585,18 +674,15 @@ struct ItemsView: View {
             .font(.title3.weight(.bold))
             .foregroundStyle(selectedItemIDs.contains(item.id) ? Color.accentColor : .secondary)
             .padding(6)
-            .background(.thinMaterial, in: Circle())
+            .background(AppTheme.controlStrongFill, in: Circle())
+            .overlay {
+                Circle()
+                    .strokeBorder(AppTheme.stroke)
+            }
     }
 
-    private var summaryText: String {
-        let categoryText = selectedCategory?.title ?? "全部分类"
-        if isSelectionMode {
-            return "多选模式已开启，可直接点选事项进行归档、恢复或删除"
-        }
-        if itemSortMode == .custom && !canCustomizeSort {
-            return "当前为「\(filter.title) / \(categoryText) / \(itemSortMode.shortTitle)」，切回全部视图可拖拽排序"
-        }
-        return "当前为「\(filter.title) / \(categoryText) / \(itemSortMode.shortTitle)」，共 \(displayedCount) 项"
+    private var selectionSummaryText: String {
+        "多选模式已开启，可直接点选事项进行归档、恢复或删除"
     }
 
     private var displayedCount: Int {
@@ -644,55 +730,149 @@ struct ItemsView: View {
 
     private func filterChip(title: String, category: ExpiryCategory?) -> some View {
         let isSelected = selectedCategory == category
+        let tint = category?.tint ?? .accentColor
+        let symbolName = category?.symbolName ?? "square.grid.2x2"
 
         return Button {
             selectedCategory = category
         } label: {
-            Text(title)
+            Label(title, systemImage: symbolName)
                 .font(.subheadline.weight(.medium))
-                .foregroundStyle(isSelected ? Color.white : Color.primary)
+                .foregroundStyle(isSelected ? Color.white : .primary)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 10)
                 .background(
-                    isSelected ? AnyShapeStyle(AppTheme.accentGradient) : AnyShapeStyle(Color.primary.opacity(0.05)),
+                    isSelected
+                        ? AnyShapeStyle(
+                            LinearGradient(
+                                colors: [tint.opacity(0.94), AppTheme.warmOlive.opacity(0.76)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        : AnyShapeStyle(AppTheme.controlFill),
                     in: Capsule(style: .continuous)
                 )
+                .overlay {
+                    Capsule(style: .continuous)
+                        .strokeBorder(isSelected ? AppTheme.glassStroke : AppTheme.stroke)
+                }
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.appPressable)
+        .animation(.spring(response: 0.24, dampingFraction: 0.82), value: isSelected)
     }
 
     private func sectionHeader(title: String, subtitle: String, count: Int) -> some View {
         HStack(alignment: .firstTextBaseline) {
             VStack(alignment: .leading, spacing: 4) {
-                Text(title)
+                Label(title, systemImage: sectionIcon(for: title))
                     .font(.headline)
+                    .foregroundStyle(sectionAccentColor(for: title))
                 Text(subtitle)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+                    .lineSpacing(3)
+                    .fixedSize(horizontal: false, vertical: true)
             }
 
             Spacer()
 
             Text("\(count) 项")
                 .font(.caption.weight(.semibold))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(sectionAccentColor(for: title))
                 .padding(.horizontal, 10)
                 .padding(.vertical, 6)
-                .background(AppTheme.surfaceMuted, in: Capsule(style: .continuous))
+                .background(sectionAccentColor(for: title).opacity(colorScheme == .dark ? 0.18 : 0.12), in: Capsule(style: .continuous))
         }
     }
 
-    private func quickStat(title: String, value: String) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(value)
-                .font(.headline.weight(.bold))
+    private func panelGroupLabel(_ title: String) -> some View {
+        Text(title)
+            .font(.caption.weight(.semibold))
+            .foregroundStyle(.secondary)
+            .textCase(.uppercase)
+    }
+
+    private func quickStat(title: String, value: String, systemImage: String, tint: Color) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Image(systemName: systemImage)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(tint)
+                .frame(width: 34, height: 34)
+                .background(tint.opacity(colorScheme == .dark ? 0.16 : 0.10), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .strokeBorder(tint.opacity(colorScheme == .dark ? 0.18 : 0.12))
+                }
+
             Text(title)
-                .font(.caption)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(tint)
+                .lineLimit(1)
+                .minimumScaleFactor(0.86)
+
+            Text(value)
+                .font(.system(size: 26, weight: .bold, design: .rounded))
+                .foregroundStyle(.primary)
+                .minimumScaleFactor(0.9)
+
+            Text(title)
+                .font(.caption2.weight(.medium))
                 .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.9)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(12)
-        .background(AppTheme.surfaceMuted, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .frame(maxWidth: .infinity, minHeight: 132, alignment: .leading)
+        .padding(14)
+        .background(AppTheme.surfaceMuted, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .appAccentGlow(tint, width: 68, height: 68, opacity: 0.10, x: 8, y: -10, blur: 18)
+    }
+
+    private func sectionIcon(for title: String) -> String {
+        switch title {
+        case "待处理":
+            return "tray.and.arrow.down.fill"
+        case "已过期":
+            return "clock.badge.exclamationmark.fill"
+        case "已归档":
+            return "archivebox.fill"
+        default:
+            return "square.stack.3d.up.fill"
+        }
+    }
+
+    private func sectionAccentColor(for title: String) -> Color {
+        switch title {
+        case "待处理":
+            return AppTheme.warmSage
+        case "已过期":
+            return AppTheme.softDanger
+        case "已归档":
+            return AppTheme.warmStone
+        default:
+            return .secondary
+        }
+    }
+
+    private func headerToolbarButtonLabel(
+        systemImage: String,
+        isProminent: Bool = false
+    ) -> some View {
+        Image(systemName: systemImage)
+            .font(.system(size: 18, weight: .semibold))
+            .foregroundStyle(isProminent ? Color.white : Color.primary)
+            .frame(width: 44, height: 44)
+            .background(
+                isProminent ? AnyShapeStyle(AppTheme.accentGradient) : AnyShapeStyle(AppTheme.controlStrongFill),
+                in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+            )
+            .overlay {
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .strokeBorder(
+                        isProminent ? AppTheme.glassStroke : AppTheme.warmStone.opacity(0.12),
+                        lineWidth: 1
+                    )
+            }
     }
 
     private func selectionButton(
@@ -707,12 +887,12 @@ struct ItemsView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 14)
                 .background(
-                    isDestructive ? AnyShapeStyle(Color.red.opacity(0.14)) : AnyShapeStyle(AppTheme.surfaceMuted),
+                    isDestructive ? AnyShapeStyle(AppTheme.destructiveFill) : AnyShapeStyle(AppTheme.surfaceMuted),
                     in: RoundedRectangle(cornerRadius: 18, style: .continuous)
                 )
-                .foregroundStyle(isDestructive ? Color.red : Color.primary)
+                .foregroundStyle(isDestructive ? AppTheme.softDanger : Color.primary)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.appPressable)
         .disabled(selectedItemIDs.isEmpty)
     }
 

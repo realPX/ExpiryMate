@@ -76,6 +76,13 @@ def add_files(target, group, pattern)
   end
 end
 
+def add_resources(target, group, pattern)
+  Dir.glob(pattern).sort.each do |path|
+    ref = group.files.find { |file| file.path == path } || group.new_file(path)
+    target.resources_build_phase.add_file_reference(ref, true)
+  end
+end
+
 add_files(app_target, app_group, "#{APP_DIR}/**/*.swift")
 add_files(widget_target, widget_group, "#{WIDGET_DIR}/**/*.swift")
 add_files(app_target, shared_group, "#{SHARED_DIR}/**/*.swift")
@@ -83,6 +90,8 @@ Dir.glob("#{SHARED_DIR}/**/*.swift").sort.each do |path|
   ref = shared_group.files.find { |file| file.path == path } || shared_group.new_file(path)
   widget_target.add_file_references([ref])
 end
+
+add_resources(app_target, app_group, "#{APP_DIR}/**/*.xcassets")
 
 app_target.add_dependency(widget_target)
 embed_phase = app_target.new_copy_files_build_phase("Embed App Extensions")

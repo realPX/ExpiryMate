@@ -4,6 +4,10 @@ import SwiftData
 struct ItemDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    @AppStorage(AppConstants.defaultReminderHourKey, store: AppConstants.sharedDefaults)
+    private var defaultReminderHour = AppConstants.defaultReminderHour
+    @AppStorage(AppConstants.defaultReminderMinuteKey, store: AppConstants.sharedDefaults)
+    private var defaultReminderMinute = AppConstants.defaultReminderMinute
 
     let item: ExpiryItem
 
@@ -32,11 +36,12 @@ struct ItemDetailView: View {
 
                 detailCard(
                     title: "提醒规则",
-                    subtitle: "通知会在上午 9 点发送",
+                    subtitle: "通知会在 \(observedReminderTimeText) 发送",
                     accent: item.reminderEnabled ? item.category.tint : .secondary
                 ) {
-                    Text(AppFormatters.reminderSummary(for: item))
+                    Text(reminderSummaryText)
                         .font(.body)
+                        .lineSpacing(4)
                 }
 
                 if !item.note.isEmpty {
@@ -48,6 +53,7 @@ struct ItemDetailView: View {
                         Text(item.note)
                             .font(.body)
                             .foregroundStyle(.secondary)
+                            .lineSpacing(4)
                     }
                 }
 
@@ -61,29 +67,41 @@ struct ItemDetailView: View {
                             .padding(.vertical, 16)
                             .background(AppTheme.accentGradient, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
                             .foregroundStyle(.white)
+                            .shadow(color: AppTheme.warmRosewood.opacity(0.16), radius: 14, x: 0, y: 8)
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(.appPressable)
 
                     Button {
                         Task { await toggleArchive() }
                     } label: {
                         Label(item.isArchived ? "恢复到列表" : "归档事项", systemImage: item.isArchived ? "arrow.uturn.backward.circle" : "archivebox")
                             .font(.headline.weight(.semibold))
+                            .foregroundStyle(.primary)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
                             .background(AppTheme.surfaceMuted, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 22, style: .continuous)
+                                    .strokeBorder(AppTheme.stroke)
+                            }
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(.appPressable)
 
                     Button(role: .destructive) {
                         showDeleteConfirmation = true
                     } label: {
                         Label("删除事项", systemImage: "trash")
                             .font(.headline.weight(.semibold))
+                            .foregroundStyle(AppTheme.softDanger)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
+                            .background(AppTheme.destructiveFill, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 22, style: .continuous)
+                                    .strokeBorder(AppTheme.softDanger.opacity(0.22))
+                            }
                     }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(.appPressable)
                 }
             }
             .padding(AppTheme.pagePadding)
@@ -92,6 +110,7 @@ struct ItemDetailView: View {
         .background(AppTheme.canvasGradient.ignoresSafeArea())
         .navigationTitle("详情")
         .navigationBarTitleDisplayMode(.inline)
+        .tint(AppTheme.warmSage)
         .sheet(item: $editingItem) { target in
             NavigationStack {
                 ItemEditorView(item: target)
@@ -111,12 +130,18 @@ struct ItemDetailView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack(spacing: 8) {
                         statusBadge
-                        CategoryBadge(category: item.category, emphasis: true)
+                        CategoryBadge(
+                            category: item.category,
+                            titleOverride: item.displayCategoryTitle,
+                            emphasis: true,
+                            maxWidth: CategoryBadge.WidthStyle.detail.value
+                        )
                     }
 
                     Text(item.title)
                         .font(.system(size: 30, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
+                        .lineSpacing(4)
                         .fixedSize(horizontal: false, vertical: true)
 
                     Text(AppFormatters.countdownText(daysRemaining: item.daysRemaining))
@@ -128,7 +153,7 @@ struct ItemDetailView: View {
 
                 ZStack {
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .fill(.white.opacity(0.16))
+                        .fill(AppTheme.glassFill)
 
                     Image(systemName: item.category.symbolName)
                         .font(.title2.weight(.bold))
@@ -145,10 +170,10 @@ struct ItemDetailView: View {
 
                     ZStack(alignment: .leading) {
                         Capsule(style: .continuous)
-                            .fill(.white.opacity(0.18))
+                            .fill(AppTheme.glassTrack)
 
                         Capsule(style: .continuous)
-                            .fill(.white.opacity(0.88))
+                            .fill(AppTheme.glassProgress)
                             .frame(width: max(width * timelineProgress, 10))
                     }
                 }
@@ -156,44 +181,39 @@ struct ItemDetailView: View {
             }
 
             Divider()
-                .overlay(.white.opacity(0.22))
+                .overlay(AppTheme.glassDivider)
 
             infoRow(title: "状态", value: item.statusText)
-            infoRow(title: "分类", value: item.category.title)
+            infoRow(title: "分类", value: item.displayCategoryTitle)
         }
         .padding(22)
         .background(statusGradient, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 30, style: .continuous)
-                .strokeBorder(.white.opacity(0.12))
+                .strokeBorder(AppTheme.glassStroke)
         }
         .shadow(color: statusColor.opacity(0.24), radius: 18, x: 0, y: 10)
     }
 
     private func statCard(title: String, value: String, icon: String, accent: Color) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 12) {
             Label(title, systemImage: icon)
-                .font(.caption.weight(.medium))
+                .font(.caption.weight(.semibold))
                 .foregroundStyle(accent)
             Text(value)
-                .font(.headline)
+                .font(.headline.weight(.semibold))
+                .lineSpacing(3)
                 .fixedSize(horizontal: false, vertical: true)
         }
         .padding(18)
         .frame(maxWidth: .infinity, minHeight: 112, alignment: .leading)
         .background(AppTheme.cardBackground, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .overlay(alignment: .top) {
-            RoundedRectangle(cornerRadius: 999, style: .continuous)
-                .fill(accent.opacity(0.88))
-                .frame(height: 4)
-                .padding(.horizontal, 18)
-                .padding(.top, 10)
-        }
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
                 .strokeBorder(AppTheme.stroke)
         }
         .shadow(color: AppTheme.shadow, radius: 16, x: 0, y: 8)
+        .appAccentGlow(accent, width: 78, height: 78, opacity: 0.10, x: 10, y: -14, blur: 18)
     }
 
     private func detailCard<Content: View>(
@@ -202,37 +222,33 @@ struct ItemDetailView: View {
         accent: Color,
         @ViewBuilder content: () -> Content
     ) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 14) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
-                    .font(.headline)
+                    .font(.headline.weight(.semibold))
                 Text(subtitle)
-                    .font(.subheadline)
+                    .font(.subheadline.weight(.medium))
                     .foregroundStyle(.secondary)
+                    .lineSpacing(3)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             content()
         }
         .padding(18)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(AppTheme.cardBackground, in: RoundedRectangle(cornerRadius: AppTheme.cardRadius, style: .continuous))
-        .overlay(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 999, style: .continuous)
-                .fill(accent.opacity(0.9))
-                .frame(width: 4)
-                .padding(.vertical, 18)
-                .padding(.leading, 10)
-        }
         .overlay {
             RoundedRectangle(cornerRadius: AppTheme.cardRadius, style: .continuous)
                 .strokeBorder(AppTheme.stroke)
         }
         .shadow(color: AppTheme.shadow, radius: 16, x: 0, y: 8)
+        .appAccentGlow(accent, width: 82, height: 82, opacity: 0.10, x: 12, y: -16, blur: 20)
     }
 
     private var statusColor: Color {
         if item.isArchived { return .secondary }
-        if item.isExpired { return .red }
-        if item.isDueToday { return .orange }
+        if item.isExpired { return AppTheme.softDanger }
+        if item.isDueToday { return AppTheme.softWarning }
         if item.isUpcoming { return item.category.tint }
         return .secondary
     }
@@ -248,7 +264,7 @@ struct ItemDetailView: View {
 
         if item.isExpired {
             return LinearGradient(
-                colors: [Color.red.opacity(0.96), Color.orange.opacity(0.78), Color.yellow.opacity(0.44)],
+                colors: [AppTheme.softDanger.opacity(0.96), AppTheme.warmTerracotta.opacity(0.84), AppTheme.warmSand.opacity(0.60)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -256,7 +272,7 @@ struct ItemDetailView: View {
 
         if item.isDueToday {
             return LinearGradient(
-                colors: [Color.orange.opacity(0.94), item.category.tint.opacity(0.76), Color.yellow.opacity(0.42)],
+                colors: [AppTheme.softWarning.opacity(0.94), item.category.tint.opacity(0.76), AppTheme.warmSand.opacity(0.54)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -264,33 +280,37 @@ struct ItemDetailView: View {
 
         if item.isUpcoming {
             return LinearGradient(
-                colors: [item.category.tint.opacity(0.94), Color.accentColor.opacity(0.74), Color.cyan.opacity(0.42)],
+                colors: [item.category.tint.opacity(0.94), Color.accentColor.opacity(0.76), AppTheme.warmOlive.opacity(0.56)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
         }
 
         return LinearGradient(
-            colors: [Color.accentColor.opacity(0.86), Color.blue.opacity(0.74), Color.cyan.opacity(0.42)],
+            colors: [Color.accentColor.opacity(0.86), AppTheme.warmSage.opacity(0.76), AppTheme.warmOlive.opacity(0.58)],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
     }
 
     private var timelineProgress: CGFloat {
-        let calendar = Calendar.current
-        let start = calendar.startOfDay(for: item.createdAt)
-        let end = calendar.startOfDay(for: item.expireDate)
-        let now = calendar.startOfDay(for: .now)
+        CGFloat(item.timelineProgress)
+    }
 
-        let total = end.timeIntervalSince(start)
-        guard total > 0 else {
-            return item.daysRemaining <= 0 ? 1 : 0.08
+    private var observedReminderTimeText: String {
+        AppFormatters.reminderTimeText(
+            hour: defaultReminderHour,
+            minute: defaultReminderMinute
+        )
+    }
+
+    private var reminderSummaryText: String {
+        guard item.reminderEnabled, !item.reminderPresets.isEmpty else {
+            return "未开启提醒"
         }
 
-        let elapsed = now.timeIntervalSince(start)
-        let progress = elapsed / total
-        return min(max(progress, 0.08), 1)
+        let presets = item.reminderPresets.map(\.title).joined(separator: "、")
+        return "\(observedReminderTimeText) · \(presets)"
     }
 
     private var progressHeader: some View {
@@ -327,7 +347,7 @@ struct ItemDetailView: View {
         if item.isArchived { return "已归档" }
         if item.isExpired { return "已超 \(abs(item.daysRemaining)) 天" }
         if item.isDueToday { return "今天截止" }
-        return "\(Int(timelineProgress * 100))% 进度"
+        return item.timelineSummaryText
     }
 
     private var statusBadge: some View {
@@ -336,7 +356,11 @@ struct ItemDetailView: View {
             .foregroundStyle(.white)
             .padding(.horizontal, 10)
             .padding(.vertical, 7)
-            .background(.white.opacity(0.16), in: Capsule(style: .continuous))
+            .background(AppTheme.glassFill, in: Capsule(style: .continuous))
+            .overlay {
+                Capsule(style: .continuous)
+                    .strokeBorder(AppTheme.glassStroke)
+            }
     }
 
     private var statusBadgeTitle: String {
@@ -358,6 +382,7 @@ struct ItemDetailView: View {
     private func infoRow(title: String, value: String) -> some View {
         HStack {
             Text(title)
+                .font(.subheadline.weight(.medium))
                 .foregroundStyle(.white.opacity(0.82))
             Spacer()
             Text(value)

@@ -1,6 +1,12 @@
 import SwiftUI
 
 struct ItemCardView: View {
+    @Environment(\.colorScheme) private var colorScheme
+    @AppStorage(AppConstants.defaultReminderHourKey, store: AppConstants.sharedDefaults)
+    private var defaultReminderHour = AppConstants.defaultReminderHour
+    @AppStorage(AppConstants.defaultReminderMinuteKey, store: AppConstants.sharedDefaults)
+    private var defaultReminderMinute = AppConstants.defaultReminderMinute
+
     enum Style {
         case prominent
         case compact
@@ -10,38 +16,56 @@ struct ItemCardView: View {
     let style: Style
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        VStack(alignment: .leading, spacing: containerSpacing) {
             HStack(alignment: .top, spacing: 12) {
-                RoundedRectangle(cornerRadius: style == .prominent ? 18 : 16, style: .continuous)
-                    .fill(statusGradient.opacity(0.14))
-                    .frame(width: style == .prominent ? 46 : 40, height: style == .prominent ? 46 : 40)
+                RoundedRectangle(cornerRadius: iconCornerRadius, style: .continuous)
+                    .fill(statusGradient.opacity(colorScheme == .dark ? 0.20 : 0.14))
+                    .frame(width: iconSize, height: iconSize)
                     .overlay {
                         Image(systemName: item.category.symbolName)
-                            .font(.headline.weight(.semibold))
+                            .font(iconFont)
                             .foregroundStyle(item.category.tint)
                     }
+                    .overlay {
+                        RoundedRectangle(cornerRadius: iconCornerRadius, style: .continuous)
+                            .strokeBorder(statusColor.opacity(colorScheme == .dark ? 0.18 : (style == .prominent ? 0.10 : 0.14)))
+                    }
 
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: titleBlockSpacing) {
                     HStack(spacing: 8) {
-                        CategoryBadge(category: item.category)
+                        CategoryBadge(
+                            category: item.category,
+                            titleOverride: item.displayCategoryTitle,
+                            maxWidth: CategoryBadge.WidthStyle.compact.value
+                        )
                         statusBadge
                     }
 
                     Text(item.title)
                         .font(style == .prominent ? .title3.weight(.semibold) : .headline)
                         .foregroundStyle(.primary)
+                        .lineSpacing(style == .prominent ? 2 : 1)
                         .lineLimit(style == .prominent ? 2 : 1)
+                        .fixedSize(horizontal: false, vertical: style == .prominent)
                 }
 
                 Spacer(minLength: 8)
 
-                VStack(alignment: .trailing, spacing: 6) {
+                VStack(alignment: .trailing, spacing: 4) {
                     Text(shortStatusText)
-                        .font(.subheadline.weight(.semibold))
+                        .font(statusHeaderFont)
                         .foregroundStyle(statusColor)
                     Text(item.expireDate.formatted(AppFormatters.shortDate))
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                }
+                .padding(.horizontal, style == .prominent ? 0 : 10)
+                .padding(.vertical, style == .prominent ? 0 : 8)
+                .background {
+                    if style == .compact {
+                        RoundedRectangle(cornerRadius: 14, style: .continuous)
+                            .fill(AppTheme.controlFill)
+                    }
                 }
             }
 
@@ -90,12 +114,31 @@ struct ItemCardView: View {
                 Text(item.note)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+                    .lineSpacing(3)
                     .lineLimit(2)
                     .padding(.top, 2)
             }
         }
-        .padding(style == .prominent ? 18 : 16)
+        .padding(cardPadding)
+        .background(alignment: .topTrailing) {
+            if style == .prominent {
+                RoundedRectangle(cornerRadius: 999, style: .continuous)
+                    .fill(statusColor.opacity(colorScheme == .dark ? 0.24 : 0.18))
+                    .frame(width: 90, height: 32)
+                    .blur(radius: 18)
+                    .offset(x: 24, y: -8)
+                }
+        }
         .appCard(radius: style == .prominent ? AppTheme.cardRadius : 22)
+        .appAccentGlow(
+            statusColor,
+            width: style == .prominent ? 76 : 58,
+            height: style == .prominent ? 76 : 58,
+            opacity: style == .prominent ? 0.11 : 0.08,
+            x: style == .prominent ? 12 : 8,
+            y: style == .prominent ? -14 : -10,
+            blur: style == .prominent ? 20 : 16
+        )
     }
 
     private var shortStatusText: String {
@@ -103,10 +146,15 @@ struct ItemCardView: View {
     }
 
     private var reminderShortText: String {
-        if let first = item.reminderPresets.first {
-            return first.title
+        if item.reminderPresets.count > 1 {
+            return "\(observedReminderTimeText) · \(item.reminderPresets.count) 个提醒"
         }
-        return "已提醒"
+
+        if let first = item.reminderPresets.first {
+            return "\(observedReminderTimeText) · \(first.title)"
+        }
+
+        return observedReminderTimeText
     }
 
     private var reminderText: String {
@@ -117,10 +165,45 @@ struct ItemCardView: View {
         item.reminderEnabled ? "bell.badge" : "bell.slash"
     }
 
+    private var observedReminderTimeText: String {
+        AppFormatters.reminderTimeText(
+            hour: defaultReminderHour,
+            minute: defaultReminderMinute
+        )
+    }
+
+    private var containerSpacing: CGFloat {
+        style == .prominent ? 14 : 12
+    }
+
+    private var cardPadding: CGFloat {
+        style == .prominent ? 18 : 16
+    }
+
+    private var iconSize: CGFloat {
+        style == .prominent ? 46 : 42
+    }
+
+    private var iconCornerRadius: CGFloat {
+        style == .prominent ? 18 : 15
+    }
+
+    private var iconFont: Font {
+        style == .prominent ? .headline.weight(.semibold) : .subheadline.weight(.semibold)
+    }
+
+    private var titleBlockSpacing: CGFloat {
+        style == .prominent ? 8 : 6
+    }
+
+    private var statusHeaderFont: Font {
+        style == .prominent ? .subheadline.weight(.semibold) : .caption.weight(.bold)
+    }
+
     private var statusColor: Color {
         if item.isArchived { return .secondary }
-        if item.isExpired { return .red }
-        if item.isDueToday { return .orange }
+        if item.isExpired { return AppTheme.softDanger }
+        if item.isDueToday { return AppTheme.softWarning }
         if item.isUpcoming { return item.category.tint }
         return .secondary
     }
@@ -131,13 +214,13 @@ struct ItemCardView: View {
         if item.isArchived {
             colors = [Color.secondary.opacity(0.75), Color.secondary.opacity(0.28)]
         } else if item.isExpired {
-            colors = [Color.red.opacity(0.95), Color.orange.opacity(0.55)]
+            colors = [AppTheme.softDanger.opacity(0.94), AppTheme.warmTerracotta.opacity(0.62)]
         } else if item.isDueToday {
-            colors = [Color.orange.opacity(0.92), Color.yellow.opacity(0.5)]
+            colors = [AppTheme.softWarning.opacity(0.92), AppTheme.warmSand.opacity(0.64)]
         } else if item.isUpcoming {
-            colors = [item.category.tint.opacity(0.92), Color.accentColor.opacity(0.5)]
+            colors = [item.category.tint.opacity(0.92), AppTheme.warmOlive.opacity(0.54)]
         } else {
-            colors = [Color.accentColor.opacity(0.72), Color.blue.opacity(0.36)]
+            colors = [Color.accentColor.opacity(0.74), AppTheme.warmSage.opacity(0.44)]
         }
 
         return LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -160,19 +243,7 @@ struct ItemCardView: View {
     }
 
     private var timelineProgress: CGFloat {
-        let calendar = Calendar.current
-        let start = calendar.startOfDay(for: item.createdAt)
-        let end = calendar.startOfDay(for: item.expireDate)
-        let now = calendar.startOfDay(for: .now)
-
-        let total = end.timeIntervalSince(start)
-        guard total > 0 else {
-            return item.daysRemaining <= 0 ? 1 : 0.08
-        }
-
-        let elapsed = now.timeIntervalSince(start)
-        let progress = elapsed / total
-        return min(max(progress, 0.08), 1)
+        CGFloat(item.timelineProgress)
     }
 
     private var timelineFootnote: String {
@@ -188,7 +259,7 @@ struct ItemCardView: View {
             return "今天截止"
         }
 
-        return "\(Int(timelineProgress * 100))%"
+        return item.timelineSummaryText
     }
 
     private var statusBadge: some View {
@@ -197,16 +268,21 @@ struct ItemCardView: View {
             .foregroundStyle(statusColor)
             .padding(.horizontal, 8)
             .padding(.vertical, 5)
-            .background(statusColor.opacity(0.12), in: Capsule(style: .continuous))
+            .background(statusColor.opacity(colorScheme == .dark ? 0.18 : 0.12), in: Capsule(style: .continuous))
+            .overlay {
+                Capsule(style: .continuous)
+                    .strokeBorder(statusColor.opacity(colorScheme == .dark ? 0.16 : 0.10))
+            }
     }
 
     private func statusPill(text: String, icon: String) -> some View {
         Label(text, systemImage: icon)
-            .font(.caption.weight(.medium))
+            .font(style == .prominent ? .caption.weight(.medium) : .caption2.weight(.medium))
             .foregroundStyle(.secondary)
-            .padding(.horizontal, 10)
-            .padding(.vertical, 8)
-            .background(Color.primary.opacity(0.05), in: Capsule(style: .continuous))
+            .lineLimit(1)
+            .padding(.horizontal, style == .prominent ? 10 : 9)
+            .padding(.vertical, style == .prominent ? 8 : 7)
+            .background(AppTheme.controlFill, in: Capsule(style: .continuous))
     }
 
     private func timelineDate(text: String, value: String, alignment: HorizontalAlignment = .leading) -> some View {
