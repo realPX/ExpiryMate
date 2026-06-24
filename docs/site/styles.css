@@ -1,21 +1,19 @@
 :root {
-  --bg: #f7efe7;
-  --bg-soft: #fff8f3;
-  --surface: rgba(255, 252, 247, 0.82);
+  --bg: #f6efe7;
+  --surface: rgba(255, 252, 247, 0.84);
   --surface-strong: #fffdf9;
-  --text: #382b26;
-  --muted: #7c675d;
-  --line: rgba(116, 84, 70, 0.14);
+  --text: #392d27;
+  --muted: #7d6a60;
+  --line: rgba(118, 86, 71, 0.14);
   --accent: #c96a57;
   --accent-strong: #9e4e41;
-  --accent-soft: #f3c8bb;
-  --gold: #c59a5b;
-  --shadow: 0 24px 60px rgba(101, 69, 54, 0.12);
-  --shadow-soft: 0 12px 30px rgba(101, 69, 54, 0.08);
-  --radius-xl: 34px;
-  --radius-lg: 26px;
+  --gold: #c49a58;
+  --shadow: 0 28px 60px rgba(101, 69, 54, 0.12);
+  --shadow-soft: 0 12px 28px rgba(101, 69, 54, 0.08);
+  --radius-xl: 36px;
+  --radius-lg: 28px;
   --radius-md: 18px;
-  --max-width: 1120px;
+  --max-width: 1180px;
 }
 
 * {
@@ -33,10 +31,10 @@ body {
   font-family: "Iowan Old Style", "Palatino Linotype", "Noto Serif SC",
     "Songti SC", "Source Han Serif SC", serif;
   background:
-    radial-gradient(circle at top left, rgba(201, 106, 87, 0.16), transparent 28%),
-    radial-gradient(circle at 82% 18%, rgba(197, 154, 91, 0.18), transparent 24%),
-    radial-gradient(circle at bottom right, rgba(255, 220, 209, 0.58), transparent 30%),
-    linear-gradient(180deg, #fffaf5 0%, var(--bg) 44%, #f3e6dc 100%);
+    radial-gradient(circle at top left, rgba(201, 106, 87, 0.14), transparent 26%),
+    radial-gradient(circle at 80% 16%, rgba(196, 154, 88, 0.18), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(255, 228, 214, 0.7), transparent 30%),
+    linear-gradient(180deg, #fffaf6 0%, var(--bg) 46%, #f0e2d7 100%);
 }
 
 body::before {
@@ -44,12 +42,12 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.16;
+  opacity: 0.14;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-  background-size: 26px 26px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.6), transparent 92%);
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 94%);
 }
 
 a {
@@ -57,58 +55,64 @@ a {
   text-decoration: none;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+}
+
 .page-shell {
-  width: min(var(--max-width), calc(100vw - 32px));
+  width: min(var(--max-width), calc(100vw - 28px));
   margin: 0 auto;
   padding: 18px 0 28px;
 }
 
-.apology-page {
-  position: relative;
-}
-
 .hero,
-.content-card,
-.sidebar,
+.story-band,
+.album-card,
+.closing-card,
 .footer-card {
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
 }
 
-.hero {
+.warm-page {
+  position: relative;
+}
+
+.warm-hero {
   position: relative;
   overflow: hidden;
   margin: 12px auto 22px;
-  padding: 30px;
-  border-radius: 34px;
+  padding: 28px;
+  border-radius: var(--radius-xl);
   background:
-    linear-gradient(160deg, rgba(255, 252, 247, 0.96) 0%, rgba(255, 246, 239, 0.9) 42%, rgba(248, 229, 217, 0.88) 100%);
+    linear-gradient(180deg, rgba(255, 252, 247, 0.96) 0%, rgba(255, 247, 239, 0.9) 100%);
 }
 
-.hero::before,
-.hero::after {
+.warm-hero::before,
+.warm-hero::after {
   content: "";
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
 }
 
-.hero::before {
-  inset: -90px -60px auto auto;
+.warm-hero::before {
+  inset: -100px -80px auto auto;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(201, 106, 87, 0.16), transparent 70%);
+}
+
+.warm-hero::after {
+  inset: auto auto -110px -90px;
   width: 240px;
   height: 240px;
-  background: radial-gradient(circle, rgba(201, 106, 87, 0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(196, 154, 88, 0.14), transparent 72%);
 }
 
-.hero::after {
-  inset: auto auto -80px -70px;
-  width: 210px;
-  height: 210px;
-  background: radial-gradient(circle, rgba(197, 154, 91, 0.14), transparent 70%);
-}
-
-.hero-topbar {
+.warm-topbar {
   position: relative;
   z-index: 1;
   display: flex;
@@ -124,7 +128,6 @@ a {
   gap: 12px;
   font-family: "Avenir Next", "PingFang SC", "Noto Sans SC", sans-serif;
   font-weight: 700;
-  letter-spacing: 0.02em;
 }
 
 .brand-icon {
@@ -146,49 +149,55 @@ a {
   min-height: 34px;
   padding: 0 14px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(158, 78, 65, 0.12);
   color: var(--muted);
-  font-size: 12px;
   font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.warm-hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 0.96fr 1.04fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.warm-hero-copy {
+  padding: 8px 0;
 }
 
 .hero-eyebrow {
   position: relative;
   z-index: 1;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   color: var(--gold);
   font-family: "Avenir Next", "PingFang SC", sans-serif;
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
 }
 
-.hero h1 {
-  position: relative;
-  z-index: 1;
+.warm-hero h1 {
   margin: 0 0 14px;
   max-width: 12ch;
-  font-size: clamp(40px, 7vw, 72px);
+  font-size: clamp(42px, 7vw, 74px);
   line-height: 1.02;
-  letter-spacing: -0.03em;
-}
-
-.hero p {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  max-width: 740px;
-  font-family: "Avenir Next", "PingFang SC", "Noto Sans SC", sans-serif;
-  font-size: 17px;
-  color: var(--muted);
+  letter-spacing: -0.04em;
 }
 
 .hero-intro {
-  white-space: normal;
+  margin: 0;
+  max-width: 680px;
+  font-family: "Avenir Next", "PingFang SC", "Noto Sans SC", sans-serif;
+  font-size: 17px;
+  color: var(--muted);
 }
 
 .hero-note {
@@ -199,7 +208,7 @@ a {
   margin-top: 18px;
   padding: 12px 16px;
   border-radius: 18px;
-  background: rgba(255, 251, 246, 0.85);
+  background: rgba(255, 251, 246, 0.9);
   border: 1px solid rgba(158, 78, 65, 0.1);
   color: var(--accent-strong);
   font-family: "Avenir Next", "PingFang SC", sans-serif;
@@ -230,17 +239,50 @@ a {
   font-weight: 700;
   letter-spacing: 0.01em;
   box-shadow: 0 14px 26px rgba(158, 78, 65, 0.18);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
-.hero-nav a:hover,
-.button-link:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.02);
-  box-shadow: 0 18px 32px rgba(158, 78, 65, 0.22);
+.hero-cover-photo {
+  width: 100%;
+  height: min(76vh, 820px);
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: 0 24px 44px rgba(101, 69, 54, 0.16);
 }
 
-.hero-tags {
+.warm-hero-visual {
+  position: relative;
+}
+
+.warm-caption-card {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 22px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: rgba(255, 252, 247, 0.84);
+  border: 1px solid rgba(158, 78, 65, 0.1);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-soft);
+}
+
+.warm-caption-card strong {
+  display: block;
+  margin-bottom: 6px;
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  color: var(--accent-strong);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.warm-caption-card p {
+  margin: 0;
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.warm-badges {
   position: relative;
   z-index: 1;
   display: flex;
@@ -249,13 +291,13 @@ a {
   margin-top: 18px;
 }
 
-.hero-tags span {
+.warm-badges span {
   display: inline-flex;
   align-items: center;
   min-height: 34px;
   padding: 0 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(158, 78, 65, 0.12);
   color: var(--muted);
   font-family: "Avenir Next", "PingFang SC", sans-serif;
@@ -263,125 +305,17 @@ a {
   font-weight: 700;
 }
 
-.content-grid {
-  display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
-  gap: 20px;
-  margin-bottom: 24px;
-}
-
-.sidebar {
-  position: sticky;
-  top: 18px;
-  align-self: start;
-  padding: 22px;
-  border-radius: var(--radius-xl);
-  background: var(--surface);
-}
-
-.sidebar h2,
-.content-card h2 {
-  margin: 0 0 10px;
-  line-height: 1.2;
-}
-
-.sidebar h2 {
-  font-size: 22px;
-}
-
-.sidebar p {
-  margin: 0 0 16px;
-  color: var(--muted);
-  font-family: "Avenir Next", "PingFang SC", sans-serif;
-  font-size: 14px;
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.sidebar nav a {
-  padding: 12px 14px;
-  border-radius: 16px;
-  color: var(--muted);
-  background: rgba(201, 106, 87, 0.04);
-  font-family: "Avenir Next", "PingFang SC", sans-serif;
-  font-size: 14px;
-  transition: transform 0.16s ease, background 0.16s ease, color 0.16s ease;
-}
-
-.sidebar nav a:hover {
-  transform: translateX(2px);
-  color: var(--accent-strong);
-  background: rgba(201, 106, 87, 0.1);
-}
-
-.sidebar-note {
-  margin-top: 18px;
-  padding: 18px;
-  border-radius: 20px;
-  background: rgba(255, 251, 246, 0.9);
-  border: 1px solid rgba(158, 78, 65, 0.1);
-}
-
-.sidebar-note strong {
-  display: block;
-  margin-bottom: 8px;
-  font-family: "Avenir Next", "PingFang SC", sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-strong);
-}
-
-.sidebar-note p {
-  margin: 0;
-  font-family: "Avenir Next", "PingFang SC", sans-serif;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.letter-stack {
-  display: grid;
-  gap: 18px;
-}
-
-.content-card,
-.footer-card {
-  background: var(--surface);
-  border-radius: 28px;
-}
-
-.content-card {
+.story-band,
+.closing-card {
+  margin-bottom: 22px;
   padding: 28px;
-}
-
-.content-card h2 {
-  font-size: 24px;
-  letter-spacing: -0.02em;
-}
-
-.content-card p,
-.content-card li {
-  color: #5f4a40;
-}
-
-.content-card p,
-.content-card li,
-.content-card h4 {
-  font-family: "Avenir Next", "PingFang SC", "Noto Sans SC", sans-serif;
-}
-
-.content-card + .content-card {
-  margin-top: 0;
+  border-radius: var(--radius-xl);
+  background: rgba(255, 252, 247, 0.78);
 }
 
 .section-label {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   min-height: 32px;
   padding: 0 12px;
   margin-bottom: 16px;
@@ -395,116 +329,96 @@ a {
   text-transform: uppercase;
 }
 
-.notice,
-.contact-list,
-.faq-list,
-.promise-list {
+.story-band h2,
+.closing-card h2 {
+  margin: 0 0 10px;
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.15;
+}
+
+.story-band p,
+.closing-card p {
+  margin: 0;
+  max-width: 840px;
+  color: var(--muted);
+  font-family: "Avenir Next", "PingFang SC", "Noto Sans SC", sans-serif;
+  font-size: 16px;
+}
+
+.album-grid {
   display: grid;
-  gap: 14px;
+  grid-template-columns: 1.1fr 0.95fr 0.95fr;
+  gap: 18px;
+  margin-bottom: 22px;
 }
 
-.apology-notice {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.mini-card {
-  padding: 18px;
-  border-radius: 22px;
+.album-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  border-radius: 30px;
   background: var(--surface-strong);
-  border: 1px solid rgba(158, 78, 65, 0.08);
+}
+
+.album-card-large {
+  grid-row: span 2;
+  min-height: 860px;
+}
+
+.album-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.album-card:hover img {
+  transform: scale(1.02);
+  filter: saturate(1.02);
+}
+
+.album-overlay {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  padding: 18px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 252, 247, 0.1), rgba(255, 252, 247, 0.82));
+  backdrop-filter: blur(10px);
   box-shadow: var(--shadow-soft);
 }
 
-.mini-card h4 {
-  margin: 0 0 8px;
-  font-size: 16px;
+.album-overlay span {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--gold);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.album-overlay h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.22;
   color: var(--text);
 }
 
-.mini-card p,
-.mini-card li {
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.72;
-}
-
-.mini-card ul {
-  margin: 10px 0 0;
-  padding-left: 18px;
-}
-
-.promise-item {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  gap: 16px;
-  align-items: start;
-  padding: 18px;
-  border-radius: 22px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 249, 245, 0.94));
-  border: 1px solid rgba(158, 78, 65, 0.09);
-}
-
-.promise-index {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  border-radius: 18px;
-  background: linear-gradient(145deg, rgba(201, 106, 87, 0.14), rgba(197, 154, 91, 0.16));
-  color: var(--accent-strong);
-  font-family: "Avenir Next", "PingFang SC", sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-}
-
-.promise-item h4 {
-  margin: 0 0 8px;
-  font-size: 17px;
-}
-
-.promise-item p {
-  margin: 0;
-}
-
-.ending-card {
-  position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 248, 242, 0.94));
-}
-
-.ending-card::after {
-  content: "";
-  position: absolute;
-  inset: auto -100px -120px auto;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(201, 106, 87, 0.12), transparent 68%);
-  pointer-events: none;
-}
-
-.closing-line {
-  margin-top: 8px;
-  font-size: 18px;
-  color: var(--accent-strong);
-}
-
-.ending-nav {
+.closing-nav {
   margin-top: 22px;
 }
 
 .footer-card {
-  margin: 0 auto 20px;
+  margin: 0 auto 18px;
   padding: 22px 24px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+  border-radius: 28px;
   background: var(--surface);
 }
 
@@ -519,87 +433,23 @@ a {
   border: 1px solid rgba(158, 78, 65, 0.12);
 }
 
-.inline-code {
-  padding: 3px 7px;
-  border-radius: 8px;
-  background: rgba(201, 106, 87, 0.1);
-  color: var(--accent-strong);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 13px;
-}
-
-.content-card h3 {
-  margin: 24px 0 10px;
-  font-size: 18px;
-}
-
-.content-card ul {
-  margin: 10px 0 0;
-  padding-left: 20px;
-}
-
-.content-card li + li {
-  margin-top: 8px;
-}
-
-.check-list li::marker {
-  color: var(--accent);
-}
-
-.story-grid,
-.brand-principles {
-  display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.story-card,
-.principle-card {
-  position: relative;
-}
-
-.story-kicker {
-  display: inline-block;
-  margin-bottom: 10px;
-  color: var(--gold);
-  font-family: "Avenir Next", "PingFang SC", sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.story-card h4 {
-  margin: 0 0 8px;
-  font-size: 16px;
-}
-
-.story-card p {
-  margin: 0;
-}
-
-.apology-card p + p {
-  margin-top: 12px;
-}
-
-.apology-footer .button-link {
-  background: transparent;
-  color: var(--accent-strong);
-}
-
-@media (max-width: 960px) {
-  .content-grid {
+@media (max-width: 1060px) {
+  .warm-hero-grid {
     grid-template-columns: 1fr;
   }
 
-  .sidebar {
-    position: static;
+  .hero-cover-photo {
+    height: min(70vh, 720px);
   }
 
-  .apology-notice,
-  .story-grid,
-  .brand-principles {
-    grid-template-columns: 1fr;
+  .album-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .album-card-large {
+    grid-row: auto;
+    grid-column: span 2;
+    min-height: 560px;
   }
 }
 
@@ -609,37 +459,58 @@ a {
     padding-top: 8px;
   }
 
-  .hero,
-  .content-card,
-  .sidebar,
-  .footer-card {
+  .warm-hero,
+  .story-band,
+  .closing-card,
+  .footer-card,
+  .album-card {
     border-radius: 24px;
   }
 
-  .hero {
-    padding: 22px;
-  }
-
-  .content-card {
+  .warm-hero {
     padding: 20px;
   }
 
-  .hero-topbar {
+  .warm-topbar {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .hero h1 {
+  .warm-hero h1 {
     max-width: none;
     font-size: clamp(34px, 12vw, 52px);
   }
 
-  .promise-item {
+  .hero-intro {
+    font-size: 15px;
+  }
+
+  .hero-cover-photo {
+    height: 520px;
+    border-radius: 22px;
+  }
+
+  .warm-caption-card {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .album-grid {
     grid-template-columns: 1fr;
   }
 
-  .promise-index {
-    width: 52px;
-    height: 52px;
+  .album-card-large {
+    grid-column: auto;
+    min-height: 500px;
+  }
+
+  .album-card {
+    min-height: 380px;
+  }
+
+  .footer-card {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
