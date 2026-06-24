@@ -1,20 +1,21 @@
 :root {
-  --bg: #f4f7ff;
-  --surface: rgba(255, 255, 255, 0.82);
-  --surface-strong: #ffffff;
-  --text: #1f2a44;
-  --muted: #64708b;
-  --line: rgba(91, 110, 145, 0.14);
-  --blue: #5574ff;
-  --cyan: #61d9ff;
-  --orange: #ff8b59;
-  --red: #ff6860;
-  --yellow: #ffcb65;
-  --shadow: 0 18px 44px rgba(38, 65, 132, 0.12);
-  --radius-xl: 28px;
-  --radius-lg: 22px;
-  --radius-md: 16px;
-  --max-width: 1100px;
+  --bg: #f7efe7;
+  --bg-soft: #fff8f3;
+  --surface: rgba(255, 252, 247, 0.82);
+  --surface-strong: #fffdf9;
+  --text: #382b26;
+  --muted: #7c675d;
+  --line: rgba(116, 84, 70, 0.14);
+  --accent: #c96a57;
+  --accent-strong: #9e4e41;
+  --accent-soft: #f3c8bb;
+  --gold: #c59a5b;
+  --shadow: 0 24px 60px rgba(101, 69, 54, 0.12);
+  --shadow-soft: 0 12px 30px rgba(101, 69, 54, 0.08);
+  --radius-xl: 34px;
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --max-width: 1120px;
 }
 
 * {
@@ -27,14 +28,28 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC",
-    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   color: var(--text);
+  line-height: 1.8;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Noto Serif SC",
+    "Songti SC", "Source Han Serif SC", serif;
   background:
-    radial-gradient(circle at top left, rgba(255, 139, 89, 0.22), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(97, 217, 255, 0.22), transparent 30%),
-    linear-gradient(180deg, #fdfefe 0%, var(--bg) 42%, #eef4ff 100%);
-  line-height: 1.7;
+    radial-gradient(circle at top left, rgba(201, 106, 87, 0.16), transparent 28%),
+    radial-gradient(circle at 82% 18%, rgba(197, 154, 91, 0.18), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(255, 220, 209, 0.58), transparent 30%),
+    linear-gradient(180deg, #fffaf5 0%, var(--bg) 44%, #f3e6dc 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.6), transparent 92%);
 }
 
 a {
@@ -45,17 +60,30 @@ a {
 .page-shell {
   width: min(var(--max-width), calc(100vw - 32px));
   margin: 0 auto;
+  padding: 18px 0 28px;
+}
+
+.apology-page {
+  position: relative;
+}
+
+.hero,
+.content-card,
+.sidebar,
+.footer-card {
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
 }
 
 .hero {
   position: relative;
   overflow: hidden;
-  margin: 20px auto 24px;
-  padding: 28px;
-  border-radius: 32px;
-  background: linear-gradient(135deg, #ff7d62 0%, #7a7df6 48%, #4370dd 100%);
-  color: #fff;
-  box-shadow: 0 22px 54px rgba(58, 88, 170, 0.24);
+  margin: 12px auto 22px;
+  padding: 30px;
+  border-radius: 34px;
+  background:
+    linear-gradient(160deg, rgba(255, 252, 247, 0.96) 0%, rgba(255, 246, 239, 0.9) 42%, rgba(248, 229, 217, 0.88) 100%);
 }
 
 .hero::before,
@@ -63,21 +91,21 @@ a {
   content: "";
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
 }
 
 .hero::before {
+  inset: -90px -60px auto auto;
   width: 240px;
   height: 240px;
-  top: -96px;
-  right: -64px;
+  background: radial-gradient(circle, rgba(201, 106, 87, 0.18), transparent 70%);
 }
 
 .hero::after {
-  width: 180px;
-  height: 180px;
-  bottom: -72px;
-  left: -56px;
+  inset: auto auto -80px -70px;
+  width: 210px;
+  height: 210px;
+  background: radial-gradient(circle, rgba(197, 154, 91, 0.14), transparent 70%);
 }
 
 .hero-topbar {
@@ -85,54 +113,82 @@ a {
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 12px;
   justify-content: space-between;
+  gap: 12px;
   margin-bottom: 22px;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Avenir Next", "PingFang SC", "Noto Sans SC", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff8f3;
+  background: linear-gradient(145deg, var(--accent) 0%, var(--accent-strong) 100%);
+  box-shadow: 0 12px 24px rgba(158, 78, 65, 0.22);
+  font-size: 19px;
 }
 
 .pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  min-height: 34px;
+  padding: 0 14px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.15);
-  font-size: 13px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(158, 78, 65, 0.12);
+  color: var(--muted);
+  font-size: 12px;
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-eyebrow {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 10px;
+  color: var(--gold);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.02em;
-  backdrop-filter: blur(14px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 
 .hero h1 {
   position: relative;
   z-index: 1;
-  margin: 0 0 12px;
-  font-size: clamp(32px, 6vw, 56px);
-  line-height: 1.08;
+  margin: 0 0 14px;
+  max-width: 12ch;
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
 }
 
 .hero p {
   position: relative;
   z-index: 1;
   margin: 0;
-  max-width: 700px;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 16px;
+  max-width: 740px;
+  font-family: "Avenir Next", "PingFang SC", "Noto Sans SC", sans-serif;
+  font-size: 17px;
+  color: var(--muted);
 }
 
-.hero-home {
-  padding-bottom: 30px;
-}
-
-.hero-eyebrow {
-  position: relative;
-  z-index: 1;
-  margin-bottom: 12px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.78);
+.hero-intro {
+  white-space: normal;
 }
 
 .hero-note {
@@ -141,17 +197,13 @@ a {
   display: inline-flex;
   align-items: center;
   margin-top: 18px;
-  padding: 10px 14px;
-  border-radius: 14px;
-  background: rgba(15, 23, 42, 0.16);
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 14px;
-}
-
-.hero-note .inline-code {
-  margin-left: 8px;
-  background: rgba(255, 255, 255, 0.16);
-  color: #fff;
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: rgba(255, 251, 246, 0.85);
+  border: 1px solid rgba(158, 78, 65, 0.1);
+  color: var(--accent-strong);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  box-shadow: var(--shadow-soft);
 }
 
 .hero-nav {
@@ -159,40 +211,33 @@ a {
   z-index: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
   margin-top: 24px;
 }
 
-.hero-metrics {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 22px;
-}
-
-.metric-card {
-  padding: 16px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(14px);
-}
-
-.metric-label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 12px;
+.hero-nav a,
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: linear-gradient(145deg, var(--accent) 0%, var(--accent-strong) 100%);
+  color: #fff9f5;
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.74);
+  letter-spacing: 0.01em;
+  box-shadow: 0 14px 26px rgba(158, 78, 65, 0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
-.metric-card strong {
-  display: block;
-  font-size: 15px;
-  line-height: 1.5;
+.hero-nav a:hover,
+.button-link:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.02);
+  box-shadow: 0 18px 32px rgba(158, 78, 65, 0.22);
 }
 
 .hero-tags {
@@ -201,7 +246,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 16px;
+  margin-top: 18px;
 }
 
 .hero-tags span {
@@ -210,63 +255,44 @@ a {
   min-height: 34px;
   padding: 0 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(158, 78, 65, 0.12);
+  color: var(--muted);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
   font-size: 13px;
   font-weight: 700;
 }
 
-.hero-nav a,
-.button-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0 16px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 700;
-  backdrop-filter: blur(14px);
-}
-
 .content-grid {
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 22px;
-  margin-bottom: 40px;
-}
-
-.sidebar,
-.content-card,
-.nav-card,
-.footer-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(18px);
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
 }
 
 .sidebar {
   position: sticky;
-  top: 20px;
+  top: 18px;
   align-self: start;
-  padding: 20px;
+  padding: 22px;
   border-radius: var(--radius-xl);
+  background: var(--surface);
 }
 
 .sidebar h2,
 .content-card h2 {
   margin: 0 0 10px;
-  font-size: 20px;
-  line-height: 1.25;
+  line-height: 1.2;
+}
+
+.sidebar h2 {
+  font-size: 22px;
 }
 
 .sidebar p {
   margin: 0 0 16px;
   color: var(--muted);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
   font-size: 14px;
 }
 
@@ -277,117 +303,122 @@ a {
 }
 
 .sidebar nav a {
-  padding: 10px 12px;
-  border-radius: 14px;
+  padding: 12px 14px;
+  border-radius: 16px;
   color: var(--muted);
-  background: rgba(85, 116, 255, 0.04);
-  transition: 0.2s ease;
+  background: rgba(201, 106, 87, 0.04);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 14px;
+  transition: transform 0.16s ease, background 0.16s ease, color 0.16s ease;
 }
 
 .sidebar nav a:hover {
-  color: var(--blue);
-  background: rgba(85, 116, 255, 0.1);
+  transform: translateX(2px);
+  color: var(--accent-strong);
+  background: rgba(201, 106, 87, 0.1);
+}
+
+.sidebar-note {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 251, 246, 0.9);
+  border: 1px solid rgba(158, 78, 65, 0.1);
+}
+
+.sidebar-note strong {
+  display: block;
+  margin-bottom: 8px;
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+.sidebar-note p {
+  margin: 0;
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.letter-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.content-card,
+.footer-card {
+  background: var(--surface);
+  border-radius: 28px;
 }
 
 .content-card {
-  padding: 26px;
-  border-radius: 30px;
+  padding: 28px;
+}
+
+.content-card h2 {
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+
+.content-card p,
+.content-card li {
+  color: #5f4a40;
+}
+
+.content-card p,
+.content-card li,
+.content-card h4 {
+  font-family: "Avenir Next", "PingFang SC", "Noto Sans SC", sans-serif;
 }
 
 .content-card + .content-card {
-  margin-top: 18px;
+  margin-top: 0;
 }
 
 .section-label {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 12px;
+  min-height: 32px;
+  padding: 0 12px;
   margin-bottom: 16px;
   border-radius: 999px;
-  font-size: 13px;
+  background: rgba(201, 106, 87, 0.1);
+  color: var(--accent-strong);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 12px;
   font-weight: 700;
-  background: linear-gradient(135deg, rgba(255, 139, 89, 0.16), rgba(85, 116, 255, 0.12));
-  color: var(--blue);
-}
-
-.content-card h3 {
-  margin: 24px 0 10px;
-  font-size: 18px;
-}
-
-.content-card p,
-.content-card li {
-  color: #36435d;
-}
-
-.content-card ul {
-  margin: 10px 0 0;
-  padding-left: 20px;
-}
-
-.check-list li::marker {
-  color: var(--blue);
-}
-
-.content-card li + li {
-  margin-top: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .notice,
 .contact-list,
-.faq-list {
+.faq-list,
+.promise-list {
   display: grid;
   gap: 14px;
 }
 
-.brand-story-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.brand-story-card::after {
-  content: "";
-  position: absolute;
-  inset: auto -80px -100px auto;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(97, 217, 255, 0.2), transparent 65%);
-  pointer-events: none;
-}
-
-.story-grid,
-.brand-principles {
+.apology-notice {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.story-card,
-.principle-card {
-  position: relative;
-  z-index: 1;
-}
-
-.story-kicker {
-  display: inline-block;
-  margin-bottom: 10px;
-  color: var(--blue);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
 }
 
 .mini-card {
   padding: 18px;
-  border-radius: 20px;
+  border-radius: 22px;
   background: var(--surface-strong);
-  border: 1px solid rgba(91, 110, 145, 0.09);
+  border: 1px solid rgba(158, 78, 65, 0.08);
+  box-shadow: var(--shadow-soft);
 }
 
 .mini-card h4 {
   margin: 0 0 8px;
   font-size: 16px;
+  color: var(--text);
 }
 
 .mini-card p,
@@ -395,69 +426,169 @@ a {
   margin: 0;
   color: var(--muted);
   font-size: 14px;
+  line-height: 1.72;
 }
 
 .mini-card ul {
-  margin-top: 10px;
+  margin: 10px 0 0;
   padding-left: 18px;
 }
 
+.promise-item {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding: 18px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 249, 245, 0.94));
+  border: 1px solid rgba(158, 78, 65, 0.09);
+}
+
+.promise-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(201, 106, 87, 0.14), rgba(197, 154, 91, 0.16));
+  color: var(--accent-strong);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.promise-item h4 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.promise-item p {
+  margin: 0;
+}
+
+.ending-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 248, 242, 0.94));
+}
+
+.ending-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -100px -120px auto;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 106, 87, 0.12), transparent 68%);
+  pointer-events: none;
+}
+
+.closing-line {
+  margin-top: 8px;
+  font-size: 18px;
+  color: var(--accent-strong);
+}
+
+.ending-nav {
+  margin-top: 22px;
+}
+
 .footer-card {
-  margin: 0 auto 32px;
-  padding: 20px 24px;
-  border-radius: 24px;
+  margin: 0 auto 20px;
+  padding: 22px 24px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+  background: var(--surface);
 }
 
 .footer-meta {
+  margin-top: 8px;
   color: var(--muted);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
   font-size: 14px;
 }
 
-.brand-mark {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 800;
-}
-
-.brand-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--orange), var(--blue));
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 20px;
-  box-shadow: 0 14px 26px rgba(85, 116, 255, 0.18);
+.button-link {
+  border: 1px solid rgba(158, 78, 65, 0.12);
 }
 
 .inline-code {
   padding: 3px 7px;
   border-radius: 8px;
-  background: rgba(85, 116, 255, 0.08);
-  color: var(--blue);
+  background: rgba(201, 106, 87, 0.1);
+  color: var(--accent-strong);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 13px;
 }
 
-@media (max-width: 900px) {
+.content-card h3 {
+  margin: 24px 0 10px;
+  font-size: 18px;
+}
+
+.content-card ul {
+  margin: 10px 0 0;
+  padding-left: 20px;
+}
+
+.content-card li + li {
+  margin-top: 8px;
+}
+
+.check-list li::marker {
+  color: var(--accent);
+}
+
+.story-grid,
+.brand-principles {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.story-card,
+.principle-card {
+  position: relative;
+}
+
+.story-kicker {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--gold);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.story-card h4 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.story-card p {
+  margin: 0;
+}
+
+.apology-card p + p {
+  margin-top: 12px;
+}
+
+.apology-footer .button-link {
+  background: transparent;
+  color: var(--accent-strong);
+}
+
+@media (max-width: 960px) {
   .content-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-metrics {
-    grid-template-columns: 1fr;
-  }
-
-  .story-grid,
-  .brand-principles {
     grid-template-columns: 1fr;
   }
 
@@ -465,14 +596,17 @@ a {
     position: static;
   }
 
-  .hero {
-    padding: 24px;
+  .apology-notice,
+  .story-grid,
+  .brand-principles {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .page-shell {
-    width: min(var(--max-width), calc(100vw - 20px));
+    width: min(var(--max-width), calc(100vw - 18px));
+    padding-top: 8px;
   }
 
   .hero,
@@ -482,7 +616,30 @@ a {
     border-radius: 24px;
   }
 
+  .hero {
+    padding: 22px;
+  }
+
   .content-card {
     padding: 20px;
+  }
+
+  .hero-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero h1 {
+    max-width: none;
+    font-size: clamp(34px, 12vw, 52px);
+  }
+
+  .promise-item {
+    grid-template-columns: 1fr;
+  }
+
+  .promise-index {
+    width: 52px;
+    height: 52px;
   }
 }
